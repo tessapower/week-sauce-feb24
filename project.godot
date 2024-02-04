@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="week-sauce-feb-24"
+config/name="Holy Whac-a-Moly"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
