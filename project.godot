@@ -10,9 +10,17 @@ config_version=5
 
 [application]
 
-config/name="week-sauce-feb-24"
+config/name="Holy Whac-a-Moly"
 config/features=PackedStringArray("4.2", "Forward Plus")
+boot_splash/show_image=false
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/resizable=false
+window/stretch/mode="viewport"
 
 [dotnet]
 
