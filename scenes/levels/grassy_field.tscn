@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://ou60btpj1h75"]
+[gd_scene load_steps=3 format=3 uid="uid://ou60btpj1h75"]
 
 [ext_resource type="Texture2D" uid="uid://e8jgg0dvkq6w" path="res://assets/background/grass-background.png" id="1_1dfqm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5j12s"]
+size = Vector2(1595, 624.5)
 
 [node name="GrassyField" type="Node2D"]
 
@@ -8,3 +11,9 @@
 offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("1_1dfqm")
+
+[node name="SpawnArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnArea"]
+position = Vector2(958, 531.75)
+shape = SubResource("RectangleShape2D_5j12s")
