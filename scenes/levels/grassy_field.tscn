@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://ou60btpj1h75"]
+
+[ext_resource type="Texture2D" uid="uid://e8jgg0dvkq6w" path="res://assets/background/grass-background.png" id="1_1dfqm"]
+
+[node name="GrassyField" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_1dfqm")
