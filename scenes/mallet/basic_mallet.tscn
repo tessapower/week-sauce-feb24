@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://007eowsgjfid"]
+
+[ext_resource type="Script" path="res://scripts/mallet/mallet.gd" id="1_gjoc1"]
+[ext_resource type="Texture2D" uid="uid://bogniwo3maagl" path="res://assets/mallet/basic_mallet.png" id="2_aa5ry"]
+
+[sub_resource type="Animation" id="Animation_gg1oe"]
+resource_name = "attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.45261, -0.746283]
+}
+
+[sub_resource type="Animation" id="Animation_r1iwr"]
+resource_name = "idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mq7oj"]
+_data = {
+"attack": SubResource("Animation_gg1oe"),
+"idle": SubResource("Animation_r1iwr")
+}
+
+[node name="BasicMallet" type="Node2D"]
+position = Vector2(772, 467)
+script = ExtResource("1_gjoc1")
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprites"]
+position = Vector2(-45, -43)
+texture = ExtResource("2_aa5ry")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mq7oj")
+}
+speed_scale = 4.0
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
