@@ -105,17 +105,17 @@ func reset_score() -> void:
 signal paused()
 signal unpaused()
 
-var is_paused: bool:
+var is_paused: bool = false:
 	get:
-		return _is_paused
+		return is_paused
 
 	set(new_value):
-		if _is_paused == new_value:
+		if is_paused == new_value:
 			return
 
-		_is_paused = new_value
-		get_tree().paused = _is_paused
-		if _is_paused:
+		is_paused = new_value
+		get_tree().paused = is_paused
+		if is_paused:
 			paused.emit()
 		else:
 			unpaused.emit()
@@ -169,8 +169,6 @@ var _player_health: int
 var _current_score: int
 var _high_score: int = 0
 
-# ----------Pausing----------
-var _is_paused: bool = false
 
 # ----------Experience and Level----------
 var _player_exp: int
