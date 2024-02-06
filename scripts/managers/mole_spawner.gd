@@ -10,38 +10,43 @@ extends Node
 
 # ====================Public Interface====================
 
-@export var spawn_area: Rect2
+## A [code]ReferenceRect[/code] which outlines where moles can be spawned.
+@export var spawn_area: ReferenceRect
+
+## The mole scene to be spawned.
 @export var mole_scene: PackedScene
 
-@onready var spawn_timer: Timer = $Timer
-
-signal mole_spawned(mole: Node2D, position: Vector2)
+signal mole_spawned(mole: Mole, position: Vector2)
 
 func spawn_mole():
 	mole_spawned.emit(
-		mole_scene.instantiate() as Node2D,
-		_get_random_spawn_point());
+		mole_scene.instantiate() as Mole,
+		_get_random_spawn_point())
 
 # ====================Internal details====================
 
-# ----------Inherited from parent---------- 
+# ----------Inherited from parent----------
 
-# Called when the node enters the scene tree for the first time.
+var spawn_area_start: Vector2
+var spawn_area_end: Vector2
+
 func _ready():
 	# Assertions
-	assert(spawn_timer != null)
 	assert(mole_scene != null)
+	assert(spawn_area != null)
+	spawn_area_start = spawn_area.get_global_position()
+	spawn_area_end = spawn_area_start + spawn_area.size
 
-	spawn_timer.timeout.connect(_on_spawn_timer_timeouted)
+
 
 # ----------Callbacks----------
 
-func _on_spawn_timer_timeouted():
+func _on_timer_timeout():
 	spawn_mole()
 
 # ----------Private Implementations----------
 
 func _get_random_spawn_point() -> Vector2:
 	return Vector2(
-		randf_range(spawn_area.position.x, spawn_area.end.x),
-		randf_range(spawn_area.position.y, spawn_area.end.y));
+		randf_range(spawn_area_start.x, spawn_area_end.x),
+		randf_range(spawn_area_start.y, spawn_area_end.y))
