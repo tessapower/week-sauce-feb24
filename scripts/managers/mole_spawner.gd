@@ -1,5 +1,13 @@
 extends Node
 
+# mole_spawner.gd:
+#	Handles the instantiation of mole and the location at which to spawn it.
+#	This class does not handle the addition of the instantiated mole
+#	to the scene tree and setting its position. A manager must be connected
+#	to the 'mole_spawned' signal and handles the aforementioned procedures.
+
+# Author: Phuwasate Lutchanont
+
 # ====================Public Interface====================
 
 @export var spawn_area: Rect2

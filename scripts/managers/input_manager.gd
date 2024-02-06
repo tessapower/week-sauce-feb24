@@ -1,5 +1,10 @@
 extends Node
 
+# input_manager.gd:
+#	provides signals that are dispatched on player inputs
+
+# Author: Phuwasate Lutchanont
+
 signal attacked()
 signal skill_used(num: int)
 
