@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ou60btpj1h75"]
+[gd_scene load_steps=5 format=3 uid="uid://ou60btpj1h75"]
 
 [ext_resource type="Texture2D" uid="uid://e8jgg0dvkq6w" path="res://assets/background/grass-background.png" id="1_1dfqm"]
 [ext_resource type="Script" path="res://scripts/levels/level.gd" id="1_xxq0y"]
 [ext_resource type="PackedScene" uid="uid://837y17to6u7f" path="res://scenes/managers/mole_spawner.tscn" id="2_4rsdj"]
+[ext_resource type="PackedScene" uid="uid://007eowsgjfid" path="res://scenes/mallet/basic_mallet.tscn" id="4_scd23"]
 
 [node name="GrassyField" type="Node2D"]
 script = ExtResource("1_xxq0y")
@@ -20,5 +21,8 @@ offset_bottom = 877.0
 
 [node name="MoleSpawner" parent="." node_paths=PackedStringArray("spawn_area") instance=ExtResource("2_4rsdj")]
 spawn_area = NodePath("../SpawnArea")
+
+[node name="Mallet" parent="." instance=ExtResource("4_scd23")]
+z_index = 2
 
 [connection signal="mole_spawned" from="MoleSpawner" to="." method="_on_mole_spawned"]
