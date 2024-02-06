@@ -13,9 +13,10 @@ extends Node
 
 # TODO: load persistent player data (such as highscore)
 
-func initialize_for_scene():
+func initialize_for_scene() -> void:
 	player_max_health = initial_player_max_health
 	player_health = player_max_health
+	reset_exp_and_level()
 	reset_score()
 	is_paused = false
 
@@ -49,6 +50,32 @@ var player_health: int:
 		if _player_health == 0:
 			player_died.emit()
 
+# ----------Experience and Level----------
+
+signal player_leveled_up()
+
+@export var initial_player_max_exp: int = 100
+@export var player_max_exp_mul_factor: float = 1.1
+@export var player_max_exp_add_factor: int = 50
+
+func reset_exp_and_level() -> void:
+	_player_exp = 0
+	_player_max_exp = initial_player_max_exp
+	_player_level = 1
+
+func add_exp(value: int) -> void:
+	_player_exp += value
+	while _player_exp >= _player_max_exp:
+		_player_exp -= _player_max_exp
+
+		_player_max_exp = int(
+			_player_max_exp * player_max_exp_mul_factor
+			+ player_max_exp_add_factor)
+
+		_player_level += 1
+
+		player_leveled_up.emit()
+
 
 # ----------Score----------
 
@@ -58,12 +85,12 @@ var current_score: int:
 var high_score: int:
 	get: return _high_score
 
-func add_score(extra_score: int):
+func add_score(extra_score: int) -> void:
 	_current_score += extra_score
 	if _current_score > _high_score:
 		_high_score = _current_score
 
-func reset_score():
+func reset_score() -> void:
 	_current_score = 0
 
 
@@ -87,13 +114,20 @@ var is_paused: bool:
 			unpaused.emit()
 
 # ====================Private Implementation====================
+# these should not be accessed by other functionalities other than their own
 
-# ----------Property Backing Variables (should not touch)----------
-
+# ----------Player Health----------
 var _player_max_health: int
 var _player_health: int
 
+# ----------Score----------
 var _current_score: int
 var _high_score: int = 0
 
+# ----------Pausing----------
 var _is_paused: bool = false
+
+# ----------Experience and Level----------
+var _player_exp: int
+var _player_max_exp: int
+var _player_level: int
