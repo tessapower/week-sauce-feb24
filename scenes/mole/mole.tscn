@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://cwosug7qr3qqs"]
+[gd_scene load_steps=16 format=3 uid="uid://cwosug7qr3qqs"]
 
 [ext_resource type="Texture2D" uid="uid://3000pe1233s5" path="res://assets/mole-hole/mole-hole.png" id="1_5ngfp"]
 [ext_resource type="Script" path="res://scripts/mole/mole.gd" id="1_khpre"]
 [ext_resource type="Texture2D" uid="uid://cwtay2a1pnwbr" path="res://assets/mole/mole.png" id="2_os357"]
+[ext_resource type="Texture2D" uid="uid://iluv6vp4ffno" path="res://assets/mole/mole-single.png" id="4_bdc7o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0xbpt"]
 atlas = ExtResource("1_5ngfp")
@@ -24,6 +25,22 @@ region = Rect2(384, 0, 128, 128)
 atlas = ExtResource("1_5ngfp")
 region = Rect2(512, 0, 128, 128)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_aei56"]
+atlas = ExtResource("2_os357")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snpkq"]
+atlas = ExtResource("2_os357")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5jvko"]
+atlas = ExtResource("2_os357")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qyx4"]
+atlas = ExtResource("2_os357")
+region = Rect2(384, 0, 128, 128)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_apu38"]
 animations = [{
 "frames": [{
@@ -44,6 +61,18 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_u0wwa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aei56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snpkq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5jvko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6qyx4")
 }],
 "loop": false,
 "name": &"emerge",
@@ -51,7 +80,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_os357")
+"texture": ExtResource("4_bdc7o")
 }],
 "loop": false,
 "name": &"idle",
@@ -67,7 +96,7 @@ script = ExtResource("1_khpre")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_apu38")
-animation = &"idle"
+animation = &"emerge"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -4)
