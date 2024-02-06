@@ -114,6 +114,7 @@ var is_paused: bool:
 			return
 
 		_is_paused = new_value
+		get_tree().paused = _is_paused
 		if _is_paused:
 			paused.emit()
 		else:
