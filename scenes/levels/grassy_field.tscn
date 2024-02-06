@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://ou60btpj1h75"]
+[gd_scene load_steps=4 format=3 uid="uid://ou60btpj1h75"]
 
 [ext_resource type="Texture2D" uid="uid://e8jgg0dvkq6w" path="res://assets/background/grass-background.png" id="1_1dfqm"]
+[ext_resource type="PackedScene" uid="uid://837y17to6u7f" path="res://scenes/managers/mole_spawner.tscn" id="2_4rsdj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5j12s"]
 size = Vector2(1595, 624.5)
@@ -17,3 +18,5 @@ texture = ExtResource("1_1dfqm")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnArea"]
 position = Vector2(958, 531.75)
 shape = SubResource("RectangleShape2D_5j12s")
+
+[node name="MoleSpawner" parent="." instance=ExtResource("2_4rsdj")]
