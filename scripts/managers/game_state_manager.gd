@@ -1,5 +1,12 @@
 extends Node
 
+# game_state_manager.gd: 
+# Serves the following functionalities:
+#	manage player stats
+#	control the pause state of the game
+
+# Author: Phuwasate Lutchanont
+
 # ====================Public Interface====================
 
 # ----------Lifetime----------
