@@ -120,6 +120,7 @@ var is_paused: bool:
 			unpaused.emit()
 
 # ====================Private Implementation====================
+
 # ----------Inherited From Parent----------
 
 func _ready() -> void:
@@ -157,7 +158,7 @@ func _update_time() -> void:
 	var current_time_point := Time.get_ticks_usec()
 	_time_elapsed_usec += current_time_point - _last_time_point
 	_last_time_point = current_time_point
-
+	
 
 # ----------Player Health----------
 var _player_max_health: int
