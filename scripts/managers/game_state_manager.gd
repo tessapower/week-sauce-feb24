@@ -18,7 +18,13 @@ func initialize_for_scene() -> void:
 	player_health = player_max_health
 	reset_exp_and_level()
 	reset_score()
+	_reset_time()
 	is_paused = false
+
+# ----------Time Monitoring----------
+
+var time_elapsed_usec: int:
+	get: return _time_elapsed_usec
 
 # ----------Player Health----------
 
@@ -108,13 +114,52 @@ var is_paused: bool:
 			return
 
 		_is_paused = new_value
+		get_tree().paused = _is_paused
 		if _is_paused:
 			paused.emit()
 		else:
 			unpaused.emit()
 
 # ====================Private Implementation====================
+
+# ----------Inherited From Parent----------
+
+func _ready() -> void:
+	_ready_time()
+
+func _process(_delta: float) -> void:
+	_process_time()
+
+
 # these should not be accessed by other functionalities other than their own
+
+# ----------Time Monitoring----------
+
+var _last_time_point: int
+var _time_elapsed_usec: int
+
+func _ready_time() -> void:
+	paused.connect(_on_paused_time)
+	unpaused.connect(_on_unpaused_time)
+
+func _reset_time() -> void:
+	_last_time_point = Time.get_ticks_usec()
+	_time_elapsed_usec = 0
+
+func _process_time() -> void:
+	if !is_paused: _update_time()
+
+func _on_paused_time() -> void:
+	_update_time()
+
+func _on_unpaused_time() -> void:
+	_last_time_point = Time.get_ticks_usec()
+
+func _update_time() -> void:
+	var current_time_point := Time.get_ticks_usec()
+	_time_elapsed_usec += current_time_point - _last_time_point
+	_last_time_point = current_time_point
+	
 
 # ----------Player Health----------
 var _player_max_health: int
