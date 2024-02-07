@@ -1,8 +1,8 @@
 extends Node2D
 
-# mallet.gd: Implements the interface and signals related to the player's mallet
-
-# Author(s): Phuwasate Lutchanont, Tessa Power
+## mallet.gd: Implements the interface and signals related to the player's mallet
+##
+## Author(s): Phuwasate Lutchanont, Tessa Power
 
 # ====================Public Interface====================
 
