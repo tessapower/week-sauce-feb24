@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scripts/mallet/mallet.gd" id="1_gjoc1"]
 [ext_resource type="Texture2D" uid="uid://bogniwo3maagl" path="res://assets/mallet/basic_mallet.png" id="2_aa5ry"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4vnje"]
-radius = 37.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_0jyjo"]
+radius = 38.0132
 
 [sub_resource type="Animation" id="Animation_gg1oe"]
 resource_name = "attack"
@@ -38,12 +38,12 @@ script = ExtResource("1_gjoc1")
 [node name="HitArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
-position = Vector2(-83, 17)
-shape = SubResource("CircleShape2D_4vnje")
+position = Vector2(-84, 20)
+shape = SubResource("CircleShape2D_0jyjo")
 
 [node name="Sprites" type="Node2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="Sprites"]
+[node name="Mallet" type="Sprite2D" parent="Sprites"]
 position = Vector2(-45, -43)
 texture = ExtResource("2_aa5ry")
 
