@@ -2,7 +2,7 @@ class_name Mole extends CharacterBody2D
 ## mole.gd: Represents the mole enemy character
 ##			Interface includes: controlling the mole, interaction with its stats.
 ##
-## Author(s): Tessa Power, Phuwasate Lutchanont
+## Author(s): Phuwasate Lutchanont, Tessa Power
 
 ## Animations
 @onready var animated_sprite = $AnimatedSprite2D
@@ -14,15 +14,26 @@ signal mole_died(data: MoleData)
 
 
 var max_health: int:
-	get: return _max_health
+	get: return max_health
+
 
 var current_health: int:
-	get: return _current_health
+	get: return current_health
 
+
+## Callback function intended to be called when hit by the player's mallet.
+func on_hit() -> void:
+	# TODO: refactor this to take a damage value when powerups are implemented
+	apply_damage(10)
+
+
+# TODO: respond appropriately to mole's health.
+# 		health < 0: mole flash animation
+#		health == 0: mole died animation
 
 func apply_damage(value: int) -> void:
-	_current_health = max(0, _current_health - value)
-	if _current_health == 0: mole_died.emit(data)
+	current_health = max(0, current_health - value)
+	if current_health == 0: mole_died.emit(data)
 
 
 func _ready() -> void:
@@ -42,9 +53,6 @@ func _on_animation_finished() -> void:
 
 # Initialzes mole stats from the data
 func _load_data() -> void:
-	_max_health = data.max_health
-	_current_health = _max_health
+	max_health = data.max_health
+	current_health = max_health
 
-
-var _current_health: int
-var _max_health: int
