@@ -1,0 +1,81 @@
+[gd_scene load_steps=5 format=3 uid="uid://6u7ahu1oqetx"]
+
+[ext_resource type="Script" path="res://scripts/menus/start-menu/start_menu.gd" id="1_awl2l"]
+[ext_resource type="Texture2D" uid="uid://e8jgg0dvkq6w" path="res://assets/background/grass-background.png" id="2_w2fv6"]
+[ext_resource type="Theme" uid="uid://dxr5ftbvwjtrg" path="res://assets/ui/title_theme.tres" id="3_bgey1"]
+[ext_resource type="Theme" uid="uid://d04xevp1fvtso" path="res://assets/ui/button_theme.tres" id="3_thpks"]
+
+[node name="StartMenu" type="Node2D"]
+script = ExtResource("1_awl2l")
+
+[node name="Content" type="VBoxContainer" parent="."]
+z_index = 2
+z_as_relative = false
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Title" type="Label" parent="Content"]
+layout_mode = 2
+theme = ExtResource("3_bgey1")
+text = "Holy Whac-A-Moley!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="Content"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 62
+alignment = 1
+
+[node name="Play" type="Button" parent="Content/Buttons"]
+layout_mode = 2
+theme = ExtResource("3_thpks")
+text = "PLAY"
+
+[node name="HowToPlay" type="Button" parent="Content/Buttons"]
+layout_mode = 2
+theme = ExtResource("3_thpks")
+disabled = true
+text = "HOW TO PLAY"
+
+[node name="Settings" type="Button" parent="Content/Buttons"]
+layout_mode = 2
+theme = ExtResource("3_thpks")
+disabled = true
+text = "SETTINGS"
+
+[node name="Credits" type="Button" parent="Content/Buttons"]
+layout_mode = 2
+theme = ExtResource("3_thpks")
+disabled = true
+text = "CREDITS"
+
+[node name="Exit" type="Button" parent="Content/Buttons"]
+layout_mode = 2
+theme = ExtResource("3_thpks")
+text = "EXIT"
+
+[node name="PopupArea" type="ReferenceRect" parent="."]
+z_index = 1
+z_as_relative = false
+offset_left = 255.0
+offset_top = 154.0
+offset_right = 1685.0
+offset_bottom = 903.0
+mouse_filter = 2
+
+[node name="Background" type="TextureRect" parent="."]
+z_as_relative = false
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+texture = ExtResource("2_w2fv6")
+
+[connection signal="pressed" from="Content/Buttons/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Content/Buttons/HowToPlay" to="." method="_on_how_to_play_pressed"]
+[connection signal="pressed" from="Content/Buttons/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Content/Buttons/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="Content/Buttons/Exit" to="." method="_on_exit_pressed"]
