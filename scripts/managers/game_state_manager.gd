@@ -1,11 +1,11 @@
 extends Node
 
-# game_state_manager.gd: 
+# game_state_manager.gd:
 # Serves the following functionalities:
 #	manage player stats
 #	control the pause state of the game
 
-# Author: Phuwasate Lutchanont
+# Author: Phuwasate Lutchanont, Tessa Power
 
 # ====================Public Interface====================
 
@@ -163,7 +163,7 @@ func _update_time() -> void:
 	var current_time_point := Time.get_ticks_usec()
 	_time_elapsed_usec += current_time_point - _last_time_point
 	_last_time_point = current_time_point
-	
+
 
 # ----------Player Health----------
 var _player_max_health: int
