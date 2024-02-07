@@ -25,6 +25,7 @@ var current_health: int:
 func on_hit() -> void:
 	# TODO: refactor this to take a damage value when powerups are implemented
 	apply_damage(10)
+	animated_sprite.play("hit")
 
 
 # TODO: respond appropriately to mole's health.
@@ -47,7 +48,7 @@ func _ready() -> void:
 ## and sets the next animation appropriately.
 func _on_animation_finished() -> void:
 	match animated_sprite.animation:
-		"emerge":
+		_:
 			animated_sprite.play("idle")
 
 
