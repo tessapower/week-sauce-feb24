@@ -28,6 +28,8 @@ var time_elapsed_usec: int:
 
 # ----------Player Health----------
 
+signal player_health_changed(new_value: int)
+signal player_max_health_changed(new_value: int)
 signal player_died()
 
 @export var initial_player_max_health: int = 100:
@@ -44,6 +46,7 @@ var player_max_health: int:
 
 	set(new_value):
 		_player_max_health = max(0, _player_max_health)
+		player_max_health_changed.emit(_player_max_health)
 		player_health = min(player_health, _player_max_health)
 
 
@@ -53,12 +56,13 @@ var player_health: int:
 
 	set(new_value):
 		_player_health = min(max(0, new_value), player_max_health)
+		player_health_changed.emit(_player_health)
 		if _player_health == 0:
 			player_died.emit()
 
 # ----------Experience and Level----------
 
-signal player_leveled_up()
+signal player_leveled_up(new_level: int)
 
 @export var initial_player_max_exp: int = 100
 @export var player_max_exp_mul_factor: float = 1.1
@@ -80,7 +84,7 @@ func add_exp(value: int) -> void:
 
 		_player_level += 1
 
-		player_leveled_up.emit()
+		player_leveled_up.emit(_player_level)
 
 
 # ----------Score----------
