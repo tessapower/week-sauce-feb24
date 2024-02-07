@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxd4ay51cgpsn"]
+[gd_scene load_steps=4 format=3 uid="uid://dxd4ay51cgpsn"]
 
 [ext_resource type="PackedScene" uid="uid://dqa3jx7uplr8u" path="res://scenes/ui/health_bar.tscn" id="1_vpoey"]
 [ext_resource type="PackedScene" uid="uid://bngeq4uyqbxw7" path="res://scenes/ui/experience_bar.tscn" id="2_pxrtk"]
+[ext_resource type="FontFile" uid="uid://ctked2r3wmi52" path="res://assets/fonts/dogica_font/OTF/dogicapixelbold.otf" id="3_pg6rt"]
 
 [node name="Hud" type="Control"]
 layout_mode = 3
@@ -12,6 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HealthBar" parent="." instance=ExtResource("1_vpoey")]
+visible = false
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -23,6 +25,7 @@ grow_vertical = 0
 scale = Vector2(0.5, 0.5)
 
 [node name="ExperienceBar" parent="." instance=ExtResource("2_pxrtk")]
+visible = false
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -32,3 +35,54 @@ offset_right = 4036.0
 offset_bottom = 22.0
 grow_vertical = 0
 scale = Vector2(0.3, 0.3)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 3690.0
+offset_bottom = 2010.0
+scale = Vector2(0.5, 0.5)
+theme_override_constants/separation = 12
+alignment = 2
+
+[node name="Health" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="VBoxContainer/Health"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0.180005, 0.180005, 0.180005, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_pg6rt")
+theme_override_font_sizes/font_size = 30
+text = "HEALTH:"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HealthBar" parent="VBoxContainer/Health" instance=ExtResource("1_vpoey")]
+custom_minimum_size = Vector2(500, 10)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Exp" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="VBoxContainer/Exp"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0.180392, 0.180392, 0.180392, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_pg6rt")
+theme_override_font_sizes/font_size = 30
+text = "        XP:"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ExperienceBar" parent="VBoxContainer/Exp" instance=ExtResource("2_pxrtk")]
+custom_minimum_size = Vector2(2000, 0)
+layout_mode = 2
+size_flags_horizontal = 0
