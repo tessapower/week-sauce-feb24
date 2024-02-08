@@ -62,7 +62,10 @@ var player_health: int:
 
 # ----------Experience and Level----------
 
-signal player_leveled_up(new_level: int)
+signal player_leveled_up(new_value: int)
+signal player_level_changed(new_value: int)
+signal player_exp_changed(new_value: int)
+signal player_max_exp_changed(new_value: int)
 
 @export var initial_player_max_exp: int = 100
 @export var player_max_exp_mul_factor: float = 1.1
@@ -72,6 +75,7 @@ func reset_exp_and_level() -> void:
 	_player_exp = 0
 	_player_max_exp = initial_player_max_exp
 	_player_level = 1
+	player_level_changed.emit(_player_level)
 
 func add_exp(value: int) -> void:
 	_player_exp += value
@@ -85,6 +89,8 @@ func add_exp(value: int) -> void:
 		_player_level += 1
 
 		player_leveled_up.emit(_player_level)
+		player_level_changed.emit(_player_level)
+
 
 
 # ----------Score----------
@@ -95,13 +101,18 @@ var current_score: int:
 var high_score: int:
 	get: return _high_score
 
+signal score_changed(new_value: int)
+
 func add_score(extra_score: int) -> void:
 	_current_score += extra_score
 	if _current_score > _high_score:
 		_high_score = _current_score
 
+	score_changed.emit(_current_score)
+
 func reset_score() -> void:
 	_current_score = 0
+	score_changed.emit(_current_score)
 
 
 # ----------Pausing----------

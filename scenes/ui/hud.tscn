@@ -1,40 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxd4ay51cgpsn"]
+[gd_scene load_steps=7 format=3 uid="uid://dxd4ay51cgpsn"]
 
+[ext_resource type="Script" path="res://scripts/ui/hud.gd" id="1_21226"]
 [ext_resource type="PackedScene" uid="uid://dqa3jx7uplr8u" path="res://scenes/ui/health_bar.tscn" id="1_vpoey"]
 [ext_resource type="PackedScene" uid="uid://bngeq4uyqbxw7" path="res://scenes/ui/experience_bar.tscn" id="2_pxrtk"]
 [ext_resource type="FontFile" uid="uid://ctked2r3wmi52" path="res://assets/fonts/dogica_font/OTF/dogicapixelbold.otf" id="3_pg6rt"]
 
-[node name="Hud" type="Control"]
+[sub_resource type="LabelSettings" id="LabelSettings_htsxh"]
+font_size = 48
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kpf5d"]
+font_size = 48
+font_color = Color(1, 0.815686, 0, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Hud" type="Control" node_paths=PackedStringArray("level_label", "health_bar", "exp_bar", "score_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="HealthBar" parent="." instance=ExtResource("1_vpoey")]
-visible = false
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-offset_left = 79.0
-offset_top = -114.0
-offset_right = -841.0
-offset_bottom = -34.0
-grow_vertical = 0
-scale = Vector2(0.5, 0.5)
-
-[node name="ExperienceBar" parent="." instance=ExtResource("2_pxrtk")]
-visible = false
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-offset_left = 79.0
-offset_top = -49.0
-offset_right = 4036.0
-offset_bottom = 22.0
-grow_vertical = 0
-scale = Vector2(0.3, 0.3)
+script = ExtResource("1_21226")
+level_label = NodePath("VBoxContainer/BottomUI/LevelLabel")
+health_bar = NodePath("VBoxContainer/BottomUI/GridContainer/HealthBar")
+exp_bar = NodePath("VBoxContainer/BottomUI/GridContainer/ExperienceBar")
+score_label = NodePath("VBoxContainer/ScoreLabel")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -46,11 +39,45 @@ scale = Vector2(0.5, 0.5)
 theme_override_constants/separation = 12
 alignment = 2
 
-[node name="Health" type="HBoxContainer" parent="VBoxContainer"]
+[node name="ScoreLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 10
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0.180392, 0.180392, 0.180392, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_pg6rt")
+theme_override_font_sizes/font_size = 30
+text = "1000000"
+label_settings = SubResource("LabelSettings_htsxh")
+horizontal_alignment = 2
+vertical_alignment = 1
 
-[node name="Label" type="Label" parent="VBoxContainer/Health"]
+[node name="MiddlePadding" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 2
+
+[node name="BottomUI" type="HBoxContainer" parent="VBoxContainer"]
+layout_direction = 2
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="LevelLabel" type="Label" parent="VBoxContainer/BottomUI"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0.180392, 0.180392, 0.180392, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_pg6rt")
+theme_override_font_sizes/font_size = 30
+text = "LV 01"
+label_settings = SubResource("LabelSettings_kpf5d")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/BottomUI"]
+layout_mode = 2
+columns = 2
+
+[node name="HealthLabel" type="Label" parent="VBoxContainer/BottomUI/GridContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_colors/font_outline_color = Color(0.180005, 0.180005, 0.180005, 1)
@@ -61,28 +88,24 @@ text = "HEALTH:"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="HealthBar" parent="VBoxContainer/Health" instance=ExtResource("1_vpoey")]
+[node name="HealthBar" parent="VBoxContainer/BottomUI/GridContainer" instance=ExtResource("1_vpoey")]
 custom_minimum_size = Vector2(500, 10)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 
-[node name="Exp" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="Label" type="Label" parent="VBoxContainer/Exp"]
+[node name="ExperienceLabel" type="Label" parent="VBoxContainer/BottomUI/GridContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_colors/font_outline_color = Color(0.180392, 0.180392, 0.180392, 1)
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("3_pg6rt")
 theme_override_font_sizes/font_size = 30
-text = "        XP:"
+text = "XP:"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="ExperienceBar" parent="VBoxContainer/Exp" instance=ExtResource("2_pxrtk")]
+[node name="ExperienceBar" parent="VBoxContainer/BottomUI/GridContainer" instance=ExtResource("2_pxrtk")]
 custom_minimum_size = Vector2(2000, 0)
 layout_mode = 2
 size_flags_horizontal = 0
