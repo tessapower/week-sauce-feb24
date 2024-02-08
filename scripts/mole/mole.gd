@@ -15,11 +15,9 @@ class_name Mole extends CharacterBody2D
 @onready var attack_timer: Timer = $AttackTimer
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
-
 ## Callback function intended to be called when hit by the player's mallet.
 func on_hit() -> void:
 	# TODO: refactor this to take a damage value when powerups are implemented
-	animated_sprite.stop()
 	animated_sprite.play("hit")
 	apply_damage(100)
 
@@ -77,10 +75,6 @@ func _on_attack_timer_timeouted() -> void:
 
 func _disappear() -> void:
 	collision_shape.set_deferred("disabled", true)
-
-	animated_sprite.stop()
-	# TODO: replace the animation with one that does
-	#		indicate that the mole was hit
 	animated_sprite.play("disappear")
 
 
