@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cwosug7qr3qqs"]
+[gd_scene load_steps=37 format=3 uid="uid://cwosug7qr3qqs"]
 
 [ext_resource type="Texture2D" uid="uid://3000pe1233s5" path="res://assets/mole-hole/mole-hole.png" id="1_5ngfp"]
 [ext_resource type="Script" path="res://scripts/mole/mole.gd" id="1_khpre"]
@@ -100,14 +100,6 @@ region = Rect2(256, 0, 128, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_6qyx4"]
 atlas = ExtResource("2_os357")
 region = Rect2(384, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_r28jy"]
-atlas = ExtResource("5_135sd")
-region = Rect2(512, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ptkbw"]
-atlas = ExtResource("5_135sd")
-region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gr0xq"]
 atlas = ExtResource("5_135sd")
@@ -212,15 +204,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_r28jy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ptkbw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ptkbw")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_gr0xq")
 }, {
 "duration": 1.0,
@@ -228,9 +211,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_km1so")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ptkbw")
 }],
 "loop": false,
 "name": &"hit",
@@ -255,7 +235,9 @@ data = ExtResource("2_615r7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_apu38")
-animation = &"disappear"
+animation = &"hit"
+frame = 2
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -4)

@@ -15,15 +15,13 @@ class_name Mole extends CharacterBody2D
 @onready var attack_timer: Timer = $AttackTimer
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
-enum State { ALIVE, DISAPPEARED, DEFEATED }
-var state: State = State.ALIVE
-
 
 ## Callback function intended to be called when hit by the player's mallet.
 func on_hit() -> void:
 	# TODO: refactor this to take a damage value when powerups are implemented
-	apply_damage(10)
+	animated_sprite.stop()
 	animated_sprite.play("hit")
+	apply_damage(100)
 
 
 # TODO: respond appropriately to mole's health.
@@ -32,12 +30,7 @@ func on_hit() -> void:
 
 func apply_damage(value: int) -> void:
 	current_health = max(0, current_health - value)
-	if current_health == 0:
-		_defeat()
-	else:
-		# TODO: animated_sprite.play("flash")
-		pass
-
+	if current_health == 0: _defeat()
 
 func _ready() -> void:
 	assert(data != null)
@@ -76,21 +69,12 @@ var attack_damage: int:
 ## and sets the next animation appropriately.
 func _on_animation_finished() -> void:
 	match animated_sprite.animation:
+		"hit":
+			if current_health == 0: animated_sprite.play("disappear")
 		"disappear":
 			queue_free()
 		_:
-			match state:
-				State.ALIVE:
-					animated_sprite.play("idle")
-
-				State.DISAPPEARED:
-					# TODO: replace the animation with one that does
-					#		indicate that the mole was hit
-					animated_sprite.play("disappear")
-
-				State.DEFEATED:
-					animated_sprite.play("disappear")
-
+			animated_sprite.play("idle")
 
 func _on_attack_timer_timeouted() -> void:
 	game_state_manager.apply_damage(attack_damage)
@@ -98,12 +82,15 @@ func _on_attack_timer_timeouted() -> void:
 
 
 func _disappear() -> void:
-	state = State.DISAPPEARED
 	collision_shape.set_deferred("disabled", true)
+
+	animated_sprite.stop()
+	# TODO: replace the animation with one that does
+	#		indicate that the mole was hit
+	animated_sprite.play("disappear")
 
 
 func _defeat() -> void:
-	state = State.DEFEATED
 	collision_shape.set_deferred("disabled", true)
 	game_state_manager.add_exp(exp_reward)
 	game_state_manager.add_score(score_reward)
