@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://bngeq4uyqbxw7"]
+
+[ext_resource type="PackedScene" uid="uid://jq6gnoyd5rvm" path="res://scenes/ui/progress_bar.tscn" id="1_5b1n0"]
+[ext_resource type="Texture2D" uid="uid://uy8sraowss6a" path="res://assets/ui/exp_bar.png" id="2_uekoq"]
+
+[node name="ExperienceBar" instance=ExtResource("1_5b1n0")]
+texture_progress = ExtResource("2_uekoq")

@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqa3jx7uplr8u"]
+
+[ext_resource type="PackedScene" uid="uid://jq6gnoyd5rvm" path="res://scenes/ui/progress_bar.tscn" id="1_vonqk"]
+[ext_resource type="Texture2D" uid="uid://dl2voyrgibdg4" path="res://assets/ui/health_bar.png" id="2_wyopp"]
+
+[node name="HealthBar" instance=ExtResource("1_vonqk")]
+texture_progress = ExtResource("2_wyopp")
