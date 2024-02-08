@@ -34,9 +34,6 @@ func apply_damage(value: int) -> void:
 
 func _ready() -> void:
 	assert(data != null)
-	assert(disappear_timer != null)
-	assert(attack_timer != null)
-	assert(collision_shape != null)
 
 	_load_data()
 
