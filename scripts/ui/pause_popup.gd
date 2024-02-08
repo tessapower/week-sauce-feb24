@@ -10,7 +10,7 @@ func _ready():
 
 
 func _on_resume_pressed():
-	GameStateManager.set("is_paused", false)
+	game_state_manager.set("is_paused", false)
 	hide()
 
 

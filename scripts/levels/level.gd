@@ -15,6 +15,8 @@ const HUD = preload("res://scenes/ui/hud.tscn")
 func _ready() -> void:
 	add_child(pause)
 	add_child(hud)
+
+	game_state_manager.initialize_for_scene()
 	spawn_timer.start()
 
 
@@ -22,7 +24,7 @@ func _input(event) -> void:
 	if event.is_action_pressed("attack"):
 		mallet.attack()
 	elif event.is_action_pressed("pause"):
-		GameStateManager.set("is_paused", true)
+		game_state_manager.set("is_paused", true)
 		pause.show()
 
 

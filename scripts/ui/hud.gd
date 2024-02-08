@@ -8,18 +8,19 @@ class_name Hud extends Control
 @export var exp_bar: Range
 @export var score_label: Label
 
+
 func _ready() -> void:
 	assert(level_label != null)
 	assert(health_bar != null)
 	assert(exp_bar != null)
 	assert(score_label != null)
 
-	GameStateManager.player_level_changed.connect(_on_player_level_changed)
-	GameStateManager.player_health_changed.connect(_on_player_health_changed)
-	GameStateManager.player_max_health_changed.connect(_on_player_max_health_changed)
-	GameStateManager.player_exp_changed.connect(_on_player_exp_changed)
-	GameStateManager.player_max_exp_changed.connect(_on_player_max_exp_changed)
-	GameStateManager.score_changed.connect(_on_score_changed)
+	game_state_manager.player_level_changed.connect(_on_player_level_changed)
+	game_state_manager.player_health_changed.connect(_on_player_health_changed)
+	game_state_manager.player_max_health_changed.connect(_on_player_max_health_changed)
+	game_state_manager.player_exp_changed.connect(_on_player_exp_changed)
+	game_state_manager.player_max_exp_changed.connect(_on_player_max_exp_changed)
+	game_state_manager.score_changed.connect(_on_score_changed)
 
 func _on_player_level_changed(new_value: int) -> void:
 	level_label.text = "LV %02d" % new_value
