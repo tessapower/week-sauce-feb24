@@ -15,17 +15,16 @@ class_name Mole extends CharacterBody2D
 ## Callback function intended to be called when hit by the player's mallet.
 func on_hit() -> void:
 	# TODO: refactor this to take a damage value when powerups are implemented
-	animated_sprite.play("hit")
-	apply_damage(100)
+	apply_damage(50)
+	# Play the appropriate animation
+	if current_health == 0: animated_sprite.play("defeated")
+	else: animated_sprite.play("hit")
 
-
-# TODO: respond appropriately to mole's health.
-# 		health > 0: mole flash animation
-#		health == 0: mole died animation
 
 func apply_damage(value: int) -> void:
 	current_health = max(0, current_health - value)
 	if current_health == 0: _defeat()
+
 
 func _ready() -> void:
 	assert(data != null)
@@ -58,8 +57,6 @@ var attack_damage: int:
 ## and sets the next animation appropriately.
 func _on_animation_finished() -> void:
 	match animated_sprite.animation:
-		"hit":
-			if current_health == 0: animated_sprite.play("defeated")
 		"disappear", "defeated":
 			queue_free()
 		_:
