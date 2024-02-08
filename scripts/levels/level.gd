@@ -1,16 +1,20 @@
 class_name Level extends Node
 ## level.gd: This script manages adding spawned moles to the level scene.
 ##
-## Author(s): Tessa Power
+## Author(s): Tessa Power, Phuwasate Lutchanont
 
 @onready var spawn_timer = $MoleSpawner/Timer
 @onready var mallet: Node2D = $Mallet
 
 const PAUSE_POPUP = preload("res://scenes/ui/pause_popup.tscn")
+const HUD = preload("res://scenes/ui/hud.tscn")
+
 @onready var pause = PAUSE_POPUP.instantiate()
+@onready var hud = HUD.instantiate()
 
 func _ready() -> void:
 	add_child(pause)
+	add_child(hud)
 	spawn_timer.start()
 
 
