@@ -62,8 +62,8 @@ var attack_damage: int:
 func _on_animation_finished() -> void:
 	match animated_sprite.animation:
 		"hit":
-			if current_health == 0: animated_sprite.play("disappear")
-		"disappear":
+			if current_health == 0: animated_sprite.play("defeated")
+		"disappear", "defeated":
 			queue_free()
 		_:
 			animated_sprite.play("idle")
