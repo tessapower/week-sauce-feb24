@@ -1,33 +1,28 @@
-extends Node
+class_name GameStateManager extends Node
 
-# game_state_manager.gd: 
+# game_state_manager.gd:
 # Serves the following functionalities:
 #	manage player stats
 #	control the pause state of the game
 
-# Author: Phuwasate Lutchanont
-
-# ====================Public Interface====================
-
-# ----------Lifetime----------
+# Author: Phuwasate Lutchanont, Tessa Power
 
 # TODO: load persistent player data (such as highscore)
 
+func _process(delta: float) -> void:
+	_process_time(delta)
+
 func initialize_for_scene() -> void:
-	player_max_health = initial_player_max_health
-	player_health = player_max_health
-	reset_exp_and_level()
-	reset_score()
+	_reset_health()
+	_reset_exp_and_level()
+	_reset_score()
 	_reset_time()
 	is_paused = false
 
-# ----------Time Monitoring----------
-
-var time_elapsed_usec: int:
-	get: return _time_elapsed_usec
-
 # ----------Player Health----------
 
+signal player_health_changed(new_value: int)
+signal player_max_health_changed(new_value: int)
 signal player_died()
 
 @export var initial_player_max_health: int = 100:
@@ -37,67 +32,116 @@ signal player_died()
 	set(new_value):
 		initial_player_max_health = max(0, new_value)
 
+func apply_damage(value: int):
+	player_health -= value
 
 var player_max_health: int:
 	get:
-		return _player_max_health
+		return player_max_health
 
 	set(new_value):
-		_player_max_health = max(0, _player_max_health)
-		player_health = min(player_health, _player_max_health)
+		player_max_health = max(0, new_value)
+		player_max_health_changed.emit(player_max_health)
+		player_health = min(player_health, player_max_health)
 
 
 var player_health: int:
 	get:
-		return _player_health
+		return player_health
 
 	set(new_value):
-		_player_health = min(max(0, new_value), player_max_health)
-		if _player_health == 0:
+		player_health = min(max(0, new_value), player_max_health)
+		player_health_changed.emit(player_health)
+		if player_health == 0:
 			player_died.emit()
+
+
+func _reset_health() -> void:
+	player_max_health = initial_player_max_health
+	player_health = player_max_health
 
 # ----------Experience and Level----------
 
-signal player_leveled_up()
+signal player_leveled_up(new_value: int)
+signal player_level_changed(new_value: int)
+signal player_exp_changed(new_value: int)
+signal player_max_exp_changed(new_value: int)
 
 @export var initial_player_max_exp: int = 100
 @export var player_max_exp_mul_factor: float = 1.1
 @export var player_max_exp_add_factor: int = 50
 
-func reset_exp_and_level() -> void:
-	_player_exp = 0
-	_player_max_exp = initial_player_max_exp
-	_player_level = 1
+
+func _reset_exp_and_level() -> void:
+	player_exp = 0
+	player_max_exp = initial_player_max_exp
+	player_level = 1
+
 
 func add_exp(value: int) -> void:
-	_player_exp += value
-	while _player_exp >= _player_max_exp:
-		_player_exp -= _player_max_exp
+	player_exp += value
+	while player_exp >= player_max_exp:
+		player_exp -= player_max_exp
 
-		_player_max_exp = int(
-			_player_max_exp * player_max_exp_mul_factor
+		player_max_exp = int(
+			player_max_exp * player_max_exp_mul_factor
 			+ player_max_exp_add_factor)
 
-		_player_level += 1
+		player_level += 1
+		player_leveled_up.emit(player_level)
 
-		player_leveled_up.emit()
 
+var player_exp: int:
+	get:
+		return player_exp
+
+	set(new_value):
+		player_exp = new_value
+		player_exp_changed.emit(player_exp)
+
+
+var player_max_exp: int:
+	get:
+		return player_max_exp
+
+	set(new_value):
+		player_max_exp = new_value
+		player_max_exp_changed.emit(player_max_exp)
+
+
+var player_level: int:
+	get:
+		return player_level
+
+	set(new_value):
+		player_level = new_value
+		player_level_changed.emit(player_level)
 
 # ----------Score----------
 
 var current_score: int:
-	get: return _current_score
+	get:
+		return current_score
+
+	set(new_value):
+		current_score = new_value
+		score_changed.emit(current_score)
 
 var high_score: int:
-	get: return _high_score
+	get: return high_score
+
+signal score_changed(new_value: int)
 
 func add_score(extra_score: int) -> void:
-	_current_score += extra_score
-	if _current_score > _high_score:
-		_high_score = _current_score
+	current_score += extra_score
+	if current_score > high_score:
+		high_score = current_score
 
-func reset_score() -> void:
-	_current_score = 0
+	score_changed.emit(current_score)
+
+func _reset_score() -> void:
+	current_score = 0
+	score_changed.emit(current_score)
 
 
 # ----------Pausing----------
@@ -105,74 +149,29 @@ func reset_score() -> void:
 signal paused()
 signal unpaused()
 
-var is_paused: bool:
+var is_paused: bool = false:
 	get:
-		return _is_paused
+		return is_paused
 
 	set(new_value):
-		if _is_paused == new_value:
+		if is_paused == new_value:
 			return
 
-		_is_paused = new_value
-		get_tree().paused = _is_paused
-		if _is_paused:
+		is_paused = new_value
+		get_tree().paused = is_paused
+		if is_paused:
 			paused.emit()
 		else:
 			unpaused.emit()
 
-# ====================Private Implementation====================
-
-# ----------Inherited From Parent----------
-
-func _ready() -> void:
-	_ready_time()
-
-func _process(_delta: float) -> void:
-	_process_time()
-
-
-# these should not be accessed by other functionalities other than their own
 
 # ----------Time Monitoring----------
 
-var _last_time_point: int
-var _time_elapsed_usec: int
-
-func _ready_time() -> void:
-	paused.connect(_on_paused_time)
-	unpaused.connect(_on_unpaused_time)
+var time_elapsed: float:
+	get: return time_elapsed
 
 func _reset_time() -> void:
-	_last_time_point = Time.get_ticks_usec()
-	_time_elapsed_usec = 0
+	time_elapsed = 0
 
-func _process_time() -> void:
-	if !is_paused: _update_time()
-
-func _on_paused_time() -> void:
-	_update_time()
-
-func _on_unpaused_time() -> void:
-	_last_time_point = Time.get_ticks_usec()
-
-func _update_time() -> void:
-	var current_time_point := Time.get_ticks_usec()
-	_time_elapsed_usec += current_time_point - _last_time_point
-	_last_time_point = current_time_point
-	
-
-# ----------Player Health----------
-var _player_max_health: int
-var _player_health: int
-
-# ----------Score----------
-var _current_score: int
-var _high_score: int = 0
-
-# ----------Pausing----------
-var _is_paused: bool = false
-
-# ----------Experience and Level----------
-var _player_exp: int
-var _player_max_exp: int
-var _player_level: int
+func _process_time(delta: float) -> void:
+	time_elapsed += delta

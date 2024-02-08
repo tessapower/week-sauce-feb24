@@ -4,12 +4,57 @@ class_name Mole extends CharacterBody2D
 ##
 ## Author(s): Tessa Power, Phuwasate Lutchanont
 
-## Animations
-@onready var animated_sprite = $AnimatedSprite2D
+# TODO: mole doesnt hit
+# TODO: mole doesnt disappear
 
+## Animations
 @export var data: MoleData
-@export var disappear_timer: Timer
-@export var attack_timer: Timer
+
+@onready var animated_sprite = $AnimatedSprite2D
+@onready var disappear_timer: Timer = $DisappearTimer
+@onready var attack_timer: Timer = $AttackTimer
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
+
+enum State { ALIVE, DISAPPEARED, DEFEATED }
+var state: State = State.ALIVE
+
+
+## Callback function intended to be called when hit by the player's mallet.
+func on_hit() -> void:
+	# TODO: refactor this to take a damage value when powerups are implemented
+	apply_damage(10)
+	animated_sprite.play("hit")
+
+
+# TODO: respond appropriately to mole's health.
+# 		health > 0: mole flash animation
+#		health == 0: mole died animation
+
+func apply_damage(value: int) -> void:
+	current_health = max(0, current_health - value)
+	if current_health == 0:
+		_defeat()
+	else:
+		# TODO: animated_sprite.play("flash")
+		pass
+
+
+func _ready() -> void:
+	assert(data != null)
+	assert(disappear_timer != null)
+	assert(attack_timer != null)
+	assert(collision_shape != null)
+
+	_load_data()
+
+	disappear_timer.timeout.connect(_disappear)
+	attack_timer.timeout.connect(_on_attack_timer_timeouted)
+
+	disappear_timer.start()
+	attack_timer.start()
+
+	animated_sprite.play("emerge")
+
 
 var exp_reward: int:
 	get: return exp_reward
@@ -26,36 +71,43 @@ var current_health: int:
 var attack_damage: int:
 	get: return attack_damage
 
-func apply_damage(value: int) -> void:
-	current_health = max(0, current_health - value)
-	if current_health == 0: _defeat()
-
-
-func _ready() -> void:
-	assert(data != null)
-	assert(disappear_timer != null)
-	assert(attack_timer != null)
-	_load_data()
-	disappear_timer.timeout.connect(_disappear)
-	# TODO: attack_timer.timeout.connect(*INSER ATTACK FUNCTION HERE*)
-
-	animated_sprite.play("emerge")
 
 ## Callback function for when the mole's animated sprite finishes an animation,
 ## and sets the next animation appropriately.
 func _on_animation_finished() -> void:
 	match animated_sprite.animation:
-		"emerge":
-			animated_sprite.play("idle")
+		"disappear":
+			queue_free()
+		_:
+			match state:
+				State.ALIVE:
+					animated_sprite.play("idle")
+
+				State.DISAPPEARED:
+					# TODO: replace the animation with one that does
+					#		indicate that the mole was hit
+					animated_sprite.play("disappear")
+
+				State.DEFEATED:
+					animated_sprite.play("disappear")
+
+
+func _on_attack_timer_timeouted() -> void:
+	game_state_manager.apply_damage(attack_damage)
+	animated_sprite.play("attack")
+
 
 func _disappear() -> void:
-	# TODO: turn off collision, play mole disappear animation, and remove them from the scene
-	pass
+	state = State.DISAPPEARED
+	collision_shape.set_deferred("disabled", true)
+
 
 func _defeat() -> void:
-	GameStateManager.add_exp(exp_reward)
-	GameStateManager.add_score(score_reward)
-	_disappear()
+	state = State.DEFEATED
+	collision_shape.set_deferred("disabled", true)
+	game_state_manager.add_exp(exp_reward)
+	game_state_manager.add_score(score_reward)
+
 
 # Initialzes mole stats from the data
 func _load_data() -> void:
