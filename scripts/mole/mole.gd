@@ -2,10 +2,7 @@ class_name Mole extends CharacterBody2D
 ## mole.gd: Represents the mole enemy character
 ##			Interface includes: controlling the mole, interaction with its stats.
 ##
-## Author(s): Tessa Power, Phuwasate Lutchanont
-
-# TODO: mole doesnt hit
-# TODO: mole doesnt disappear
+## Author(s): Phuwasate Lutchanont, Tessa Power
 
 ## Animations
 @export var data: MoleData
@@ -77,11 +74,13 @@ func _on_attack_timer_timeout() -> void:
 
 
 func _disappear() -> void:
+	# Make sure we don't monitor for collisions and interrupt this
 	collision_shape.set_deferred("disabled", true)
 	animated_sprite.play("disappear")
 
 
 func _defeat() -> void:
+	# Make sure we don't monitor for collisions and interrupt this
 	collision_shape.set_deferred("disabled", true)
 	game_state_manager.add_exp(exp_reward)
 	game_state_manager.add_score(score_reward)
