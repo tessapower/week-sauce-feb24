@@ -40,9 +40,6 @@ func _ready() -> void:
 
 	_load_data()
 
-	disappear_timer.timeout.connect(_disappear)
-	attack_timer.timeout.connect(_on_attack_timer_timeouted)
-
 	disappear_timer.start()
 	attack_timer.start()
 
