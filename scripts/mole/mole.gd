@@ -8,29 +8,38 @@ class_name Mole extends CharacterBody2D
 @onready var animated_sprite = $AnimatedSprite2D
 
 @export var data: MoleData
+@export var disappear_timer: Timer
+@export var attack_timer: Timer
 
+var exp_reward: int:
+	get: return exp_reward
 
-signal mole_died(data: MoleData)
-
+var score_reward: int:
+	get: return score_reward
 
 var max_health: int:
-	get: return _max_health
+	get: return max_health
 
 var current_health: int:
-	get: return _current_health
+	get: return current_health
 
+var attack_damage: int:
+	get: return attack_damage
 
 func apply_damage(value: int) -> void:
-	_current_health = max(0, _current_health - value)
-	if _current_health == 0: mole_died.emit(data)
+	current_health = max(0, current_health - value)
+	if current_health == 0: _defeat()
 
 
 func _ready() -> void:
 	assert(data != null)
+	assert(disappear_timer != null)
+	assert(attack_timer != null)
 	_load_data()
+	disappear_timer.timeout.connect(_disappear)
+	# TODO: attack_timer.timeout.connect(*INSER ATTACK FUNCTION HERE*)
 
 	animated_sprite.play("emerge")
-
 
 ## Callback function for when the mole's animated sprite finishes an animation,
 ## and sets the next animation appropriately.
@@ -39,12 +48,20 @@ func _on_animation_finished() -> void:
 		"emerge":
 			animated_sprite.play("idle")
 
+func _disappear() -> void:
+	# TODO: turn off collision, play mole disappear animation, and remove them from the scene
+	pass
+
+func _defeat() -> void:
+	GameStateManager.add_exp(exp_reward)
+	GameStateManager.add_score(score_reward)
+	_disappear()
 
 # Initialzes mole stats from the data
 func _load_data() -> void:
-	_max_health = data.max_health
-	_current_health = _max_health
-
-
-var _current_health: int
-var _max_health: int
+	exp_reward = data.exp_reward
+	score_reward = data.score_reward
+	disappear_timer.wait_time = data.time_until_disappear
+	max_health = data.max_health; current_health = max_health
+	attack_damage = data.attack_damage
+	attack_timer.wait_time = 1.0 / data.attack_speed
