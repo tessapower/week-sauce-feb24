@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://djbo01vg156ou"]
+
+[ext_resource type="Script" path="res://scripts/menus/game-over/game_over.gd" id="1_3nl28"]
+[ext_resource type="Theme" uid="uid://dxr5ftbvwjtrg" path="res://assets/ui/title_theme.tres" id="2_nxdb8"]
+[ext_resource type="FontFile" uid="uid://fh205l1ibtib" path="res://assets/fonts/dogica_font/TTF/dogicapixelbold.ttf" id="3_8snkd"]
+[ext_resource type="Theme" uid="uid://d04xevp1fvtso" path="res://assets/ui/button_theme.tres" id="3_gah3r"]
+[ext_resource type="Texture2D" uid="uid://bev7nvfut00iq" path="res://assets/background/gameover-background.png" id="5_47m6v"]
+
+[node name="GameOver" type="Node2D"]
+script = ExtResource("1_3nl28")
+
+[node name="Content" type="VBoxContainer" parent="."]
+z_index = 2
+z_as_relative = false
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Title" type="Label" parent="Content"]
+layout_mode = 2
+theme = ExtResource("2_nxdb8")
+text = "Game Over!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FinalScore" type="Label" parent="Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.419608, 0.2, 1)
+theme_override_colors/font_outline_color = Color(0.411765, 0.211765, 0.0901961, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_8snkd")
+theme_override_font_sizes/font_size = 36
+text = "Final Score: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="Content"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 62
+alignment = 1
+
+[node name="Play" type="Button" parent="Content/Buttons"]
+layout_mode = 2
+theme = ExtResource("3_gah3r")
+text = "PLAY AGAIN"
+
+[node name="Start Menu" type="Button" parent="Content/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_gah3r")
+text = "START MENU"
+
+[node name="Exit" type="Button" parent="Content/Buttons"]
+layout_mode = 2
+theme = ExtResource("3_gah3r")
+text = "EXIT"
+
+[node name="Background" type="TextureRect" parent="."]
+z_as_relative = false
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+texture = ExtResource("5_47m6v")
+
+[connection signal="pressed" from="Content/Buttons/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Content/Buttons/Start Menu" to="." method="_on_start_menu_pressed"]
+[connection signal="pressed" from="Content/Buttons/Exit" to="." method="_on_exit_pressed"]
