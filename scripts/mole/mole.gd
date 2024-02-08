@@ -64,16 +64,17 @@ func _on_animation_finished() -> void:
 
 
 func _on_attack_timer_timeout() -> void:
-	game_state_manager.apply_damage(attack_damage)
-	# Only attack if the mole isn't already in the middle of disappearing
-	if animated_sprite.animation != "disappear":
+	# Only attack if the mole isn't already in the middle of another animation
+	if animated_sprite.animation == "idle":
+		game_state_manager.apply_damage(attack_damage)
 		animated_sprite.play("attack")
 
 
 func _disappear() -> void:
-	# Make sure we don't monitor for collisions and interrupt this
-	collision_shape.set_deferred("disabled", true)
-	animated_sprite.play("disappear")
+	if animated_sprite.animation == "idle":
+		# Make sure we don't monitor for collisions and interrupt this
+		collision_shape.set_deferred("disabled", true)
+		animated_sprite.play("disappear")
 
 
 func _defeat() -> void:
