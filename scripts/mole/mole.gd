@@ -2,10 +2,7 @@ class_name Mole extends CharacterBody2D
 ## mole.gd: Represents the mole enemy character
 ##			Interface includes: controlling the mole, interaction with its stats.
 ##
-## Author(s): Tessa Power, Phuwasate Lutchanont
-
-# TODO: mole doesnt hit
-# TODO: mole doesnt disappear
+## Author(s): Phuwasate Lutchanont, Tessa Power
 
 ## Animations
 @export var data: MoleData
@@ -15,33 +12,24 @@ class_name Mole extends CharacterBody2D
 @onready var attack_timer: Timer = $AttackTimer
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
-
 ## Callback function intended to be called when hit by the player's mallet.
 func on_hit() -> void:
 	# TODO: refactor this to take a damage value when powerups are implemented
-	animated_sprite.stop()
-	animated_sprite.play("hit")
-	apply_damage(100)
+	apply_damage(50)
+	# Play the appropriate animation
+	if current_health == 0: animated_sprite.play("defeated")
+	else: animated_sprite.play("hit")
 
-
-# TODO: respond appropriately to mole's health.
-# 		health > 0: mole flash animation
-#		health == 0: mole died animation
 
 func apply_damage(value: int) -> void:
 	current_health = max(0, current_health - value)
 	if current_health == 0: _defeat()
 
+
 func _ready() -> void:
 	assert(data != null)
-	assert(disappear_timer != null)
-	assert(attack_timer != null)
-	assert(collision_shape != null)
 
 	_load_data()
-
-	disappear_timer.timeout.connect(_disappear)
-	attack_timer.timeout.connect(_on_attack_timer_timeouted)
 
 	disappear_timer.start()
 	attack_timer.start()
@@ -69,28 +57,28 @@ var attack_damage: int:
 ## and sets the next animation appropriately.
 func _on_animation_finished() -> void:
 	match animated_sprite.animation:
-		"hit":
-			if current_health == 0: animated_sprite.play("disappear")
-		"disappear":
+		"disappear", "defeated":
 			queue_free()
 		_:
 			animated_sprite.play("idle")
 
-func _on_attack_timer_timeouted() -> void:
-	game_state_manager.apply_damage(attack_damage)
-	animated_sprite.play("attack")
+
+func _on_attack_timer_timeout() -> void:
+	# Only attack if the mole isn't already in the middle of another animation
+	if animated_sprite.animation == "idle":
+		game_state_manager.apply_damage(attack_damage)
+		animated_sprite.play("attack")
 
 
 func _disappear() -> void:
-	collision_shape.set_deferred("disabled", true)
-
-	animated_sprite.stop()
-	# TODO: replace the animation with one that does
-	#		indicate that the mole was hit
-	animated_sprite.play("disappear")
+	if animated_sprite.animation == "idle":
+		# Make sure we don't monitor for collisions and interrupt this
+		collision_shape.set_deferred("disabled", true)
+		animated_sprite.play("disappear")
 
 
 func _defeat() -> void:
+	# Make sure we don't monitor for collisions and interrupt this
 	collision_shape.set_deferred("disabled", true)
 	game_state_manager.add_exp(exp_reward)
 	game_state_manager.add_score(score_reward)
