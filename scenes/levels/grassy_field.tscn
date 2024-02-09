@@ -25,4 +25,9 @@ spawn_area = NodePath("../SpawnArea")
 [node name="Mallet" parent="." instance=ExtResource("4_scd23")]
 z_index = 2
 
+[node name="HealthPotionTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
 [connection signal="mole_spawned" from="MoleSpawner" to="." method="_on_mole_spawned"]
+[connection signal="timeout" from="HealthPotionTimer" to="." method="_on_health_potion_timer_timeout"]

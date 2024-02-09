@@ -325,7 +325,7 @@ animations = [{
 radius = 35.0
 height = 86.0
 
-[node name="Mole" type="CharacterBody2D" groups=["moles"]]
+[node name="Mole" type="CharacterBody2D" groups=["moles", "whackable"]]
 script = ExtResource("1_khpre")
 data = ExtResource("2_615r7")
 
