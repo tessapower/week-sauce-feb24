@@ -6,11 +6,15 @@ class_name Level extends Node
 @onready var spawn_timer = $MoleSpawner/Timer
 @onready var mallet: Node2D = $Mallet
 
-const PAUSE_POPUP = preload("res://scenes/ui/pause_popup.tscn")
-const HUD = preload("res://scenes/ui/hud.tscn")
+const HEALTH_POTION = preload("res://scenes/powerups/health_potion.tscn")
+const HEALTH_POTION_CHANCE: float = 1.0
 
+const PAUSE_POPUP = preload("res://scenes/ui/pause_popup.tscn")
 @onready var pause = PAUSE_POPUP.instantiate()
+
+const HUD = preload("res://scenes/ui/hud.tscn")
 @onready var hud = HUD.instantiate()
+
 
 func _ready() -> void:
 	add_child(pause)
@@ -31,3 +35,12 @@ func _input(event) -> void:
 func _on_mole_spawned(mole: Mole, position: Vector2) -> void:
 	mole.set_global_position(position)
 	add_child(mole)
+
+
+func _on_health_potion_timer_timeout():
+	var current_health = game_state_manager.player_health
+	var max_health = game_state_manager.player_max_health
+	if current_health < max_health and randf() < HEALTH_POTION_CHANCE:
+		var potion: Node2D = HEALTH_POTION.instantiate()
+		potion.set_global_position(SpawnUtils.random_spawn_point($SpawnArea))
+		add_child(potion)
