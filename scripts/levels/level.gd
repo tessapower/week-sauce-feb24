@@ -18,6 +18,7 @@ func _ready() -> void:
 
 	game_state_manager.initialize_for_scene()
 	spawn_timer.start()
+	game_state_manager.player_died.connect(_on_game_over)
 
 
 func _input(event) -> void:
@@ -31,3 +32,7 @@ func _input(event) -> void:
 func _on_mole_spawned(mole: Mole, position: Vector2) -> void:
 	mole.set_global_position(position)
 	add_child(mole)
+
+
+func _on_game_over() -> void:
+	get_tree().change_scene_to_file("res://scenes/menus/game_over.tscn")
