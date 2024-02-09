@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 game_state_manager="*res://scenes/managers/game_state_manager.tscn"
+SoundManager="*res://addons/sound_manager/sound_manager.gd"
 
 [display]
 
@@ -33,6 +34,10 @@ window/per_pixel_transparency/allowed=true
 [dotnet]
 
 project/assembly_name="week-sauce-feb-24"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/sound_manager/plugin.cfg")
 
 [filesystem]
 
