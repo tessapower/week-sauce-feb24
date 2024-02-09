@@ -12,6 +12,9 @@ class_name Mole extends CharacterBody2D
 @onready var attack_timer: Timer = $AttackTimer
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
+const EMERGE_SOUND: AudioStream = preload("res://assets/sounds/deplacementroche.mp3")
+const ATTACK_SOUND: AudioStream = preload("res://assets/sounds/swing-whoosh-weapon.mp3")
+
 ## Callback function intended to be called when hit by the player's mallet.
 func on_hit() -> void:
 	# TODO: refactor this to take a damage value when powerups are implemented
@@ -35,6 +38,7 @@ func _ready() -> void:
 	attack_timer.start()
 
 	animated_sprite.play("emerge")
+	SoundManager.play_sound(EMERGE_SOUND)
 
 
 var exp_reward: int:
@@ -68,6 +72,7 @@ func _on_attack_timer_timeout() -> void:
 	if animated_sprite.animation == "idle":
 		game_state_manager.apply_damage(attack_damage)
 		animated_sprite.play("attack")
+		SoundManager.play_sound_with_pitch(ATTACK_SOUND, randf_range(0.75, 1.25))
 
 
 func _disappear() -> void:

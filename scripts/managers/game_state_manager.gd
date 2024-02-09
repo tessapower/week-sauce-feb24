@@ -25,6 +25,10 @@ signal player_health_changed(new_value: int)
 signal player_max_health_changed(new_value: int)
 signal player_died()
 
+const HURT_SOUND: AudioStream = preload("res://assets/sounds/hurt.mp3")
+const DIED_SOUND: AudioStream = preload("res://assets/sounds/negative_beeps.mp3")
+const HEALED_SOUND: AudioStream = preload("res://assets/sounds/coin-collect-retro-8-bit-sound-effect.mp3")
+
 @export var initial_player_max_health: int = 100:
 	get:
 		return initial_player_max_health
@@ -32,8 +36,16 @@ signal player_died()
 	set(new_value):
 		initial_player_max_health = max(0, new_value)
 
+func heal(value: int):
+	player_health += value
+	SoundManager.play_sound(HEALED_SOUND)
+
 func apply_damage(value: int):
 	player_health -= value
+	SoundManager.play_sound(HURT_SOUND)
+	if player_health == 0:
+		player_died.emit()
+		SoundManager.play_sound(DIED_SOUND)
 
 var player_max_health: int:
 	get:
@@ -52,8 +64,6 @@ var player_health: int:
 	set(new_value):
 		player_health = min(max(0, new_value), player_max_health)
 		player_health_changed.emit(player_health)
-		if player_health == 0:
-			player_died.emit()
 
 
 func _reset_health() -> void:
@@ -66,6 +76,9 @@ signal player_leveled_up(new_value: int)
 signal player_level_changed(new_value: int)
 signal player_exp_changed(new_value: int)
 signal player_max_exp_changed(new_value: int)
+
+const GAIN_EXP_SOUND: AudioStream = preload("res://assets/sounds/coin.mp3")
+const LEVEL_UP_SOUND: AudioStream = preload("res://assets/sounds/cute-level-up.mp3")
 
 @export var initial_player_max_exp: int = 100
 @export var player_max_exp_mul_factor: float = 1.1
@@ -80,6 +93,7 @@ func _reset_exp_and_level() -> void:
 
 func add_exp(value: int) -> void:
 	player_exp += value
+	SoundManager.play_sound(GAIN_EXP_SOUND)
 	while player_exp >= player_max_exp:
 		player_exp -= player_max_exp
 
@@ -89,6 +103,7 @@ func add_exp(value: int) -> void:
 
 		player_level += 1
 		player_leveled_up.emit(player_level)
+		SoundManager.play_sound(LEVEL_UP_SOUND)
 
 
 var player_exp: int:

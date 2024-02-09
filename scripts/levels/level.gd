@@ -9,6 +9,9 @@ class_name Level extends Node
 const HEALTH_POTION = preload("res://scenes/powerups/health_potion.tscn")
 const HEALTH_POTION_CHANCE: float = 1.0
 
+const MUSIC: AudioStream = preload("res://assets/sounds/Sakura-Girl-Daisy-chosic.com_.mp3")
+const MUSIC_VOLUME := -15
+
 const PAUSE_POPUP = preload("res://scenes/ui/pause_popup.tscn")
 @onready var pause = PAUSE_POPUP.instantiate()
 
@@ -23,7 +26,10 @@ func _ready() -> void:
 	game_state_manager.initialize_for_scene()
 	spawn_timer.start()
 	game_state_manager.player_died.connect(_on_game_over)
+	SoundManager.play_music_at_volume(MUSIC, MUSIC_VOLUME)
 
+func _exit_tree() -> void:
+	SoundManager.stop_music()
 
 func _input(event) -> void:
 	if event.is_action_pressed("attack"):

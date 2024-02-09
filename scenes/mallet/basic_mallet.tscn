@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://007eowsgjfid"]
+[gd_scene load_steps=8 format=3 uid="uid://007eowsgjfid"]
 
 [ext_resource type="Script" path="res://scripts/mallet/mallet.gd" id="1_gjoc1"]
 [ext_resource type="Texture2D" uid="uid://bogniwo3maagl" path="res://assets/mallet/basic_mallet.png" id="2_aa5ry"]
+[ext_resource type="AudioStream" uid="uid://dwdl208do3eoq" path="res://assets/sounds/bonk-sound-effect.mp3" id="2_iv2lo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0jyjo"]
 radius = 38.0132
@@ -48,6 +49,7 @@ _data = {
 [node name="BasicMallet" type="Node2D"]
 position = Vector2(772, 467)
 script = ExtResource("1_gjoc1")
+hit_sound = ExtResource("2_iv2lo")
 
 [node name="HitArea" type="Area2D" parent="."]
 
