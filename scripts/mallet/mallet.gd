@@ -6,6 +6,8 @@ extends Node2D
 
 # ====================Public Interface====================
 
+const HIT_SOUND: AudioStream = preload("res://assets/sounds/bonk-sound-effect.mp3")
+
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var hit_area: Area2D = $HitArea
 
@@ -21,7 +23,7 @@ func _on_hit() -> void:
 		for obj in overlapping:
 			if obj.is_in_group("whackable"):
 				obj.on_hit()
-
+				SoundManager.play_sound_with_pitch(HIT_SOUND, randf_range(0.75, 1.25))
 
 func attack():
 	anim_player.play("attack")

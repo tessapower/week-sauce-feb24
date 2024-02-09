@@ -20,8 +20,7 @@ func _ready():
 func on_hit() -> void:
 	if animated_sprite.animation == "idle":
 		collision_shape.set_deferred("disabled", true)
-		var current_health = game_state_manager.get("player_health")
-		game_state_manager.set("player_health", current_health + INCREASE)
+		game_state_manager.heal(INCREASE)
 		# TODO: replace disappear animation with "+INCREASE" text
 		animated_sprite.play("disappear")
 
