@@ -22,6 +22,7 @@ func _ready() -> void:
 
 	game_state_manager.initialize_for_scene()
 	spawn_timer.start()
+	game_state_manager.player_died.connect(_on_game_over)
 
 
 func _input(event) -> void:
@@ -44,3 +45,7 @@ func _on_health_potion_timer_timeout():
 		var potion: Node2D = HEALTH_POTION.instantiate()
 		potion.set_global_position(SpawnUtils.random_spawn_point($SpawnArea))
 		add_child(potion)
+
+
+func _on_game_over() -> void:
+	get_tree().change_scene_to_file("res://scenes/menus/game_over.tscn")
