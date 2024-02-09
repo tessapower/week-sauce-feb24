@@ -76,6 +76,7 @@ func _on_animation_finished() -> void:
 		_:
 			animated_sprite.play("idle")
 
+
 func _on_attack_timer_timeouted() -> void:
 	game_state_manager.apply_damage(attack_damage)
 	animated_sprite.play("attack")

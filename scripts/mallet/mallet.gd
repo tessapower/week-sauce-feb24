@@ -13,13 +13,15 @@ extends Node2D
 func _process(_delta) -> void:
 	set_global_position(get_viewport().get_mouse_position())
 
-func _on_animation_hit() -> void:
+
+func _on_hit() -> void:
 	# Get any overlapping areas
 	if hit_area.has_overlapping_bodies():
 		var overlapping = hit_area.get_overlapping_bodies()
 		for obj in overlapping:
-			if obj.is_in_group("moles"):
-				(obj as Mole).on_hit()
+			if obj.is_in_group("whackable"):
+				obj.on_hit()
+
 
 func attack():
 	anim_player.play("attack")
