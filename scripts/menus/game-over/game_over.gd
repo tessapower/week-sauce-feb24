@@ -3,9 +3,11 @@ extends Node2D
 ## game_over.gd: This script manages responding to the player clicking buttons
 ##                on the game over menu, and displaying the outcome of the game.
 ##
-## Author(s): Tessa Power
+## Author(s): Tessa Power, Phuwasate Lutchanont
 
 @onready var final_score = $Content/FinalScore
+
+const TRANSITION_BUTTON_SOUND: AudioStream = preload("res://assets/sounds/interface.mp3")
 
 func _ready() -> void:
 	# Update the final score label
@@ -18,12 +20,15 @@ func _ready() -> void:
 
 func _on_play_pressed() -> void:
 	# TODO: set the level played in GSM so the player can replay the same level
+	SoundManager.play_sound(TRANSITION_BUTTON_SOUND)
 	get_tree().change_scene_to_file("res://scenes/levels/grassy_field.tscn")
 
 
 func _on_start_menu_pressed() -> void:
+	SoundManager.play_sound(TRANSITION_BUTTON_SOUND)
 	get_tree().change_scene_to_file("res://scenes/menus/start_menu.tscn")
 
 
 func _on_exit_pressed() -> void:
+	SoundManager.play_sound(TRANSITION_BUTTON_SOUND)
 	get_tree().quit()
