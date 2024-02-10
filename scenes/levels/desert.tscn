@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://duun6fuon4uqg" path="res://assets/background/desert/desert_background.png" id="2_g1sgx"]
 [ext_resource type="PackedScene" uid="uid://837y17to6u7f" path="res://scenes/managers/mole_spawner.tscn" id="3_8e3ur"]
 [ext_resource type="PackedScene" uid="uid://cpr1mnkiljavp" path="res://scenes/mole/desert_mole.tscn" id="4_klokl"]
-[ext_resource type="PackedScene" uid="uid://007eowsgjfid" path="res://scenes/mallet/basic_mallet.tscn" id="5_l53ov"]
+[ext_resource type="PackedScene" uid="uid://007eowsgjfid" path="res://scenes/mallet/revolver_mallet.tscn" id="5_l53ov"]
 
 [node name="Desert" type="Node2D"]
 script = ExtResource("1_gl7fq")
