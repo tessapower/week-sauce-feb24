@@ -34,9 +34,6 @@ func _ready() -> void:
 
 	_load_data()
 
-	disappear_timer.start()
-	attack_timer.start()
-
 	animated_sprite.play("emerge")
 	SoundManager.play_sound(EMERGE_SOUND)
 

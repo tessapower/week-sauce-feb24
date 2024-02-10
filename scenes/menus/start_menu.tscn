@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://6u7ahu1oqetx"]
 
 [ext_resource type="Script" path="res://scripts/menus/start-menu/start_menu.gd" id="1_awl2l"]
-[ext_resource type="Texture2D" uid="uid://e8jgg0dvkq6w" path="res://assets/background/grass-background.png" id="2_w2fv6"]
+[ext_resource type="Texture2D" uid="uid://d3oif6kphox47" path="res://assets/background/grassy_field/grass_background.png" id="2_w2fv6"]
 [ext_resource type="Theme" uid="uid://dxr5ftbvwjtrg" path="res://assets/ui/title_theme.tres" id="3_bgey1"]
 [ext_resource type="Theme" uid="uid://d04xevp1fvtso" path="res://assets/ui/button_theme.tres" id="3_thpks"]
 
@@ -34,6 +34,18 @@ alignment = 1
 layout_mode = 2
 theme = ExtResource("3_thpks")
 text = "PLAY"
+
+[node name="OptionButton" type="OptionButton" parent="Content/Buttons"]
+layout_mode = 2
+theme = ExtResource("3_thpks")
+item_count = 3
+selected = 0
+popup/item_0/text = "GRASSY FIELD"
+popup/item_0/id = 0
+popup/item_1/text = "DESERT"
+popup/item_1/id = 1
+popup/item_2/text = "UNDERWATER"
+popup/item_2/id = 2
 
 [node name="HowToPlay" type="Button" parent="Content/Buttons"]
 layout_mode = 2
@@ -75,6 +87,7 @@ mouse_filter = 2
 texture = ExtResource("2_w2fv6")
 
 [connection signal="pressed" from="Content/Buttons/Play" to="." method="_on_play_pressed"]
+[connection signal="item_selected" from="Content/Buttons/OptionButton" to="." method="_on_level_selected"]
 [connection signal="pressed" from="Content/Buttons/HowToPlay" to="." method="_on_how_to_play_pressed"]
 [connection signal="pressed" from="Content/Buttons/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Content/Buttons/Credits" to="." method="_on_credits_pressed"]

@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://cnst0qb08vt73"]
+
+[ext_resource type="Script" path="res://scripts/levels/level.gd" id="1_gl7fq"]
+[ext_resource type="Texture2D" uid="uid://duun6fuon4uqg" path="res://assets/background/desert/desert_background.png" id="2_g1sgx"]
+[ext_resource type="PackedScene" uid="uid://837y17to6u7f" path="res://scenes/managers/mole_spawner.tscn" id="3_8e3ur"]
+[ext_resource type="PackedScene" uid="uid://cpr1mnkiljavp" path="res://scenes/mole/desert_mole.tscn" id="4_klokl"]
+[ext_resource type="PackedScene" uid="uid://007eowsgjfid" path="res://scenes/mallet/revolver_mallet.tscn" id="5_l53ov"]
+
+[node name="Desert" type="Node2D"]
+script = ExtResource("1_gl7fq")
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_g1sgx")
+
+[node name="SpawnArea" type="ReferenceRect" parent="."]
+offset_left = 162.0
+offset_top = 121.0
+offset_right = 1763.0
+offset_bottom = 832.0
+
+[node name="MoleSpawner" parent="." node_paths=PackedStringArray("spawn_area") instance=ExtResource("3_8e3ur")]
+spawn_area = NodePath("../SpawnArea")
+mole_scene = ExtResource("4_klokl")
+
+[node name="Mallet" parent="." instance=ExtResource("5_l53ov")]
+z_index = 2
+
+[node name="HealthPotionTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="mole_spawned" from="MoleSpawner" to="." method="_on_mole_spawned"]
+[connection signal="timeout" from="HealthPotionTimer" to="." method="_on_health_potion_timer_timeout"]

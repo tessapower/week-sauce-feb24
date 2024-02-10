@@ -1,11 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://837y17to6u7f"]
+[gd_scene load_steps=2 format=3 uid="uid://837y17to6u7f"]
 
 [ext_resource type="Script" path="res://scripts/managers/mole_spawner.gd" id="1_o746x"]
-[ext_resource type="PackedScene" uid="uid://cwosug7qr3qqs" path="res://scenes/mole/mole.tscn" id="2_3dw6r"]
 
 [node name="MoleSpawner" type="Node2D"]
 script = ExtResource("1_o746x")
-mole_scene = ExtResource("2_3dw6r")
 
 [node name="Timer" type="Timer" parent="."]
 

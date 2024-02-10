@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://d04xevp1fvtso"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://d04xevp1fvtso"]
 
 [ext_resource type="FontFile" uid="uid://ctked2r3wmi52" path="res://assets/fonts/dogica_font/OTF/dogicapixelbold.otf" id="1_qvhgp"]
+[ext_resource type="Texture2D" uid="uid://c8i4mwepusctj" path="res://assets/ui/arrow.png" id="2_qvhre"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tyt27"]
 
@@ -11,6 +12,8 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4mrqd"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jd0l6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_83myh"]
 
 [resource]
 Button/colors/font_color = Color(1, 1, 1, 1)
@@ -28,3 +31,7 @@ Button/styles/focus = SubResource("StyleBoxEmpty_vy1l2")
 Button/styles/hover = SubResource("StyleBoxEmpty_0gjqv")
 Button/styles/normal = SubResource("StyleBoxEmpty_4mrqd")
 Button/styles/pressed = SubResource("StyleBoxEmpty_jd0l6")
+OptionButton/constants/arrow_margin = -4
+OptionButton/constants/modulate_arrow = 1
+OptionButton/icons/arrow = ExtResource("2_qvhre")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_83myh")
