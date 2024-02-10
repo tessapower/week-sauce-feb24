@@ -42,12 +42,12 @@ size_flags_vertical = 4
 theme_override_constants/separation = 62
 alignment = 1
 
-[node name="Play" type="Button" parent="Content/Buttons"]
+[node name="PlayAgain" type="Button" parent="Content/Buttons"]
 layout_mode = 2
 theme = ExtResource("3_gah3r")
 text = "PLAY AGAIN"
 
-[node name="Start Menu" type="Button" parent="Content/Buttons"]
+[node name="StartMenu" type="Button" parent="Content/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -66,6 +66,6 @@ offset_bottom = 1080.0
 mouse_filter = 2
 texture = ExtResource("5_47m6v")
 
-[connection signal="pressed" from="Content/Buttons/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="Content/Buttons/Start Menu" to="." method="_on_start_menu_pressed"]
+[connection signal="pressed" from="Content/Buttons/PlayAgain" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Content/Buttons/StartMenu" to="." method="_on_start_menu_pressed"]
 [connection signal="pressed" from="Content/Buttons/Exit" to="." method="_on_exit_pressed"]

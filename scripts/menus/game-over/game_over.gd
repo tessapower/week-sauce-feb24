@@ -21,7 +21,7 @@ func _ready() -> void:
 func _on_play_pressed() -> void:
 	# TODO: set the level played in GSM so the player can replay the same level
 	SoundManager.play_sound(TRANSITION_BUTTON_SOUND)
-	get_tree().change_scene_to_file("res://scenes/levels/grassy_field.tscn")
+	game_state_manager.load_current_level()
 
 
 func _on_start_menu_pressed() -> void:
