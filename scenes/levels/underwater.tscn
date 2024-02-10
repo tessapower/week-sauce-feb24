@@ -24,7 +24,8 @@ offset_bottom = 851.0
 spawn_area = NodePath("../SpawnArea")
 mole_scene = ExtResource("4_3qfv7")
 
-[node name="ShellMallet" parent="." instance=ExtResource("5_x3ww5")]
+[node name="Mallet" parent="." instance=ExtResource("5_x3ww5")]
+z_index = 2
 
 [node name="HealthPotionTimer" type="Timer" parent="."]
 wait_time = 10.0
