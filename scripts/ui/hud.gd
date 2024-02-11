@@ -4,7 +4,7 @@ class_name Hud extends Control
 ##
 ## Author(s): Phuwasate Lutchanont, Tessa Power
 
-@onready var level_label = get_node("Content/BottomUI/FlashingLabel")
+@onready var level_label = get_node("Content/BottomUI/LevelLabel")
 @onready var health_bar: Range = get_node("Content/BottomUI/HealthAndXP/HealthBar")
 @onready var exp_bar: Range = get_node("Content/BottomUI/HealthAndXP/ExperienceBar")
 @onready var score_label: Label = get_node("Content/ScoreLabel")
@@ -20,7 +20,7 @@ func _ready() -> void:
 
 
 func _on_player_level_changed(new_value: int) -> void:
-	level_label.text = "LVL %03d" % new_value
+	level_label.text = "LVL: %03d" % new_value
 	if new_value > 1:
 		level_label.flash()
 
@@ -42,4 +42,6 @@ func _on_player_max_exp_changed(new_value: int) -> void:
 
 
 func _on_score_changed(new_value: int) -> void:
-	score_label.text = str(new_value)
+	score_label.text = "SCORE: %09d" % new_value
+	if new_value > 0:
+		score_label.flash()
