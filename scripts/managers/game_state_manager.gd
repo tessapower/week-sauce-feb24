@@ -12,6 +12,7 @@ class_name GameStateManager extends Node
 func _process(delta: float) -> void:
 	_process_time(delta)
 
+
 func initialize_for_scene() -> void:
 	_reset_health()
 	_reset_exp_and_level()
@@ -54,9 +55,11 @@ const HEALED_SOUND: AudioStream = preload("res://assets/sounds/coin-collect-retr
 	set(new_value):
 		initial_player_max_health = max(0, new_value)
 
+
 func heal(value: int):
 	player_health += value
 	SoundManager.play_sound(HEALED_SOUND)
+
 
 func apply_damage(value: int):
 	player_health -= value
@@ -64,6 +67,7 @@ func apply_damage(value: int):
 	if player_health == 0:
 		player_died.emit()
 		SoundManager.play_sound(DIED_SOUND)
+
 
 var player_max_health: int:
 	get:
@@ -104,7 +108,7 @@ const LEVEL_UP_SOUND: AudioStream = preload("res://assets/sounds/cute-level-up.m
 
 
 func _reset_exp_and_level() -> void:
-	player_exp = 0
+	player_exp = 99
 	player_max_exp = initial_player_max_exp
 	player_level = 1
 
@@ -172,6 +176,7 @@ func add_score(extra_score: int) -> void:
 
 	score_changed.emit(current_score)
 
+
 func _reset_score() -> void:
 	current_score = 0
 	score_changed.emit(current_score)
@@ -197,14 +202,15 @@ var is_paused: bool = false:
 		else:
 			unpaused.emit()
 
-
 # ----------Time Monitoring----------
 
 var time_elapsed: float:
 	get: return time_elapsed
 
+
 func _reset_time() -> void:
 	time_elapsed = 0
+
 
 func _process_time(delta: float) -> void:
 	time_elapsed += delta
