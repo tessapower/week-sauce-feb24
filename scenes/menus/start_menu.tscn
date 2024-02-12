@@ -50,7 +50,6 @@ popup/item_2/id = 2
 [node name="HowToPlay" type="Button" parent="Content/Buttons"]
 layout_mode = 2
 theme = ExtResource("3_thpks")
-disabled = true
 text = "HOW TO PLAY"
 
 [node name="Settings" type="Button" parent="Content/Buttons"]
@@ -62,7 +61,6 @@ text = "SETTINGS"
 [node name="Credits" type="Button" parent="Content/Buttons"]
 layout_mode = 2
 theme = ExtResource("3_thpks")
-disabled = true
 text = "CREDITS"
 
 [node name="Exit" type="Button" parent="Content/Buttons"]
