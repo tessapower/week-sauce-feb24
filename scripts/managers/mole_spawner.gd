@@ -16,12 +16,14 @@ extends Node
 ## The mole scene to be spawned.
 @export var mole_scene: PackedScene
 
+const BUFFER_AREA = preload("res://scenes/mole/buffer_area.tscn")
+@onready var buffer = BUFFER_AREA.instantiate()
+
 signal mole_spawned(mole: Mole, position: Vector2)
 
 func spawn_mole():
 	mole_spawned.emit(
-		mole_scene.instantiate() as Mole,
-		SpawnUtils.random_spawn_point(spawn_area))
+		mole_scene.instantiate() as Mole, buffer.global_position)
 
 # ====================Internal details====================
 
@@ -31,6 +33,16 @@ func _ready():
 	# Assertions
 	assert(mole_scene != null)
 	assert(spawn_area != null)
+
+	# Buffer Object
+	var random_point = SpawnUtils.random_spawn_point(spawn_area)
+	buffer.set_global_position(random_point)
+	add_child(buffer)
+
+
+func _physics_process(_delta) -> void:
+	if buffer.has_overlapping_bodies():
+		buffer.set_global_position(SpawnUtils.random_spawn_point(spawn_area))
 
 
 # ----------Callbacks----------
