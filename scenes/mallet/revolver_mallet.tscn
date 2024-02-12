@@ -66,4 +66,3 @@ texture = ExtResource("2_i8vs7")
 libraries = {
 "": SubResource("AnimationLibrary_mq7oj")
 }
-speed_scale = 4.0
