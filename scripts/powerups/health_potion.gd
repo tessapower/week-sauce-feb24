@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name HealthPotion extends CharacterBody2D
 
 # mole_spawner.gd:
 #	Handles the instantiation of mole and the location at which to spawn it.
@@ -15,6 +15,8 @@ const HEAL_SOUND := preload("res://assets/sounds/coin-collect-retro-8-bit-sound-
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var collision_shape = $CollisionShape2D
 
+signal hit(pos: Vector2)
+
 func _ready():
 	animated_sprite.play("emerge")
 
@@ -24,8 +26,8 @@ func on_hit() -> void:
 		collision_shape.set_deferred("disabled", true)
 		game_state_manager.player.inc_hp(INCREASE)
 		SoundManager.play_sound(HEAL_SOUND)
-		# TODO: replace disappear animation with "+INCREASE" text
 		animated_sprite.play("disappear")
+		emit_signal("hit", global_position, INCREASE)
 
 
 func _on_disappear_timer_timeout():
