@@ -12,11 +12,12 @@ class_name Hud extends Control
 
 
 func _ready() -> void:
-	game_state_manager.player_level_changed.connect(_on_player_level_changed)
-	game_state_manager.player_health_changed.connect(_on_player_health_changed)
-	game_state_manager.player_max_health_changed.connect(_on_player_max_health_changed)
-	game_state_manager.player_exp_changed.connect(_on_player_exp_changed)
-	game_state_manager.player_max_exp_changed.connect(_on_player_max_exp_changed)
+	game_state_manager.player.level_changed.connect(_on_player_level_changed)
+	game_state_manager.player.hp_changed.connect(_on_player_hp_changed)
+	game_state_manager.player.max_hp_changed.connect(_on_player_max_hp_changed)
+	game_state_manager.player.exp_changed.connect(_on_player_exp_changed)
+	game_state_manager.player.max_exp_changed.connect(_on_player_max_exp_changed)
+
 	game_state_manager.score_changed.connect(_on_score_changed)
 
 
@@ -26,14 +27,13 @@ func _on_player_level_changed(new_value: int) -> void:
 		level_label.flash()
 
 
-func _on_player_health_changed(new_value: int) -> void:
-	health_bar.get_node("Flash").play("flash")
+func _on_player_hp_changed(new_value: int) -> void:
+  health_bar.get_node("Flash").play("flash")
 	health_bar.value = new_value
 
-
-func _on_player_max_health_changed(new_value: int) -> void:
-	health_bar.get_node("Flash").play("flash")
+func _on_player_max_hp_changed(new_value: int) -> void:
 	health_bar.max_value = new_value
+  health_bar.get_node("Flash").play("flash")
 
 
 func _on_player_exp_changed(new_value: int) -> void:

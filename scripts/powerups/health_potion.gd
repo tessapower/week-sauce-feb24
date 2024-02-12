@@ -10,6 +10,8 @@ extends CharacterBody2D
 
 const INCREASE: int = 30
 
+const HEAL_SOUND := preload("res://assets/sounds/coin-collect-retro-8-bit-sound-effect.mp3")
+
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var collision_shape = $CollisionShape2D
 
@@ -20,7 +22,8 @@ func _ready():
 func on_hit() -> void:
 	if animated_sprite.animation == "idle":
 		collision_shape.set_deferred("disabled", true)
-		game_state_manager.heal(INCREASE)
+		game_state_manager.player.inc_hp(INCREASE)
+		SoundManager.play_sound(HEAL_SOUND)
 		# TODO: replace disappear animation with "+INCREASE" text
 		animated_sprite.play("disappear")
 
