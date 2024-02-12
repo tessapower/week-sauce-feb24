@@ -53,12 +53,6 @@ layout_mode = 2
 theme = ExtResource("3_thpks")
 text = "HOW TO PLAY"
 
-[node name="Settings" type="Button" parent="Content/Buttons"]
-layout_mode = 2
-theme = ExtResource("3_thpks")
-disabled = true
-text = "SETTINGS"
-
 [node name="Credits" type="Button" parent="Content/Buttons"]
 layout_mode = 2
 theme = ExtResource("3_thpks")
@@ -122,6 +116,5 @@ texture = ExtResource("2_w2fv6")
 [connection signal="pressed" from="Content/Buttons/Play" to="." method="_on_play_pressed"]
 [connection signal="item_selected" from="Content/Buttons/OptionButton" to="." method="_on_level_selected"]
 [connection signal="pressed" from="Content/Buttons/HowToPlay" to="." method="_on_how_to_play_pressed"]
-[connection signal="pressed" from="Content/Buttons/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Content/Buttons/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="Content/Buttons/Exit" to="." method="_on_exit_pressed"]

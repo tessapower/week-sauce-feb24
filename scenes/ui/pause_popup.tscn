@@ -47,20 +47,6 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_f7gya")
 text = "RESUME"
 flat = true
 
-[node name="Settings" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme = ExtResource("1_h5nxq")
-theme_type_variation = &"FlatButton"
-theme_override_styles/normal = SubResource("StyleBoxFlat_qby5g")
-theme_override_styles/hover = SubResource("StyleBoxFlat_pog8e")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_13jfh")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_ryo84")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_f7gya")
-disabled = true
-text = "SETTINGS"
-flat = true
-
 [node name="StartMenu" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -87,11 +73,6 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_f7gya")
 text = "EXIT"
 flat = true
 
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-
 [connection signal="pressed" from="VBoxContainer/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="VBoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="VBoxContainer/StartMenu" to="." method="_on_start_menu_pressed"]
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
