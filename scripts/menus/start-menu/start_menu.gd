@@ -24,6 +24,7 @@ func _on_play_pressed() -> void:
 
 func _on_how_to_play_pressed() -> void:
 	SoundManager.play_sound(BUTTON_SOUND)
+	$HowToPlayPopup.show()
 
 
 func _on_settings_pressed() -> void:
@@ -32,6 +33,7 @@ func _on_settings_pressed() -> void:
 
 func _on_credits_pressed() -> void:
 	SoundManager.play_sound(BUTTON_SOUND)
+	$CreditsPopup.show()
 
 
 func _on_exit_pressed() -> void:
