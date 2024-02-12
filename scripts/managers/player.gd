@@ -1,7 +1,5 @@
 class_name Player
 
-const POWER_UP_LIST := preload("res://resources/powerups/power_up_list.tres")
-
 const HURT_SOUND := preload("res://assets/sounds/hurt.mp3")
 const DIED_SOUND := preload("res://assets/sounds/negative_beeps.mp3")
 const GAIN_EXP_SOUND := preload("res://assets/sounds/coin.mp3")
@@ -97,20 +95,20 @@ func inc_exp(amount: int) -> void:
 		SoundManager.play_sound(LEVEL_UP_SOUND)
 
 
-func add_power_up(power_up_data: PowerUpData) -> void:
-	var power_up: PowerUp = _power_ups.get(power_up_data.id)
-	if power_up != null:
-		power_up.level_up()
-	else:
-		_power_ups[power_up_data.id] = PowerUp.new(power_up_data)
-
-func get_upgradable_power_ups() -> Array[PowerUpData]:
-	var result: Array[PowerUpData] = []
-	for id: String in POWER_UP_LIST.power_up_datas():
-		var power_up: PowerUp = _power_ups.get(id)
-		if power_up == null || power_up.level() < PowerUp.FINAL_LEVEL:
-			result.append(power_up.data())
-	return result
+# func add_power_up(power_up_data: PowerUpData) -> void:
+# 	var power_up: PowerUp = _power_ups.get(power_up_data.id)
+# 	if power_up != null:
+# 		power_up.level_up()
+# 	else:
+# 		_power_ups[power_up_data.id] = PowerUp.new(power_up_data)
+# 
+# func get_upgradable_power_ups() -> Array[PowerUpData]:
+# 	var result: Array[PowerUpData] = []
+# 	for id: String in POWER_UP_LIST.power_up_datas():
+# 		var power_up: PowerUp = _power_ups.get(id)
+# 		if power_up == null || power_up.level() < PowerUp.FINAL_LEVEL:
+# 			result.append(power_up.data())
+# 	return result
 
 
 var _max_hp: int

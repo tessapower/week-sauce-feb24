@@ -14,6 +14,11 @@ const ATTACK_BUFFER_TIMEOUT := 0.5
 @onready var hit_area: Area2D = $HitArea
 
 
+
+@export var attack_speed: float
+
+@onready var anim_length: float = anim_player.get_animation("attack").length
+
 func _ready() -> void:
 	anim_player.animation_finished.connect(_on_animation_finished)
 
@@ -25,7 +30,7 @@ func _process(delta: float) -> void:
 func _on_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "attack":
 		if _attack_buffered:
-			anim_player.play("attack")
+			_dispatch_attack()
 			_attack_buffered = false
 		else:
 			_is_attacking = false
@@ -51,10 +56,14 @@ func _process_attack_buffer(delta: float) -> void:
 		if _attack_buffer_time_left <= 0:
 			_attack_buffered = false
 
-func attack():
+func attack() -> void:
 	if _is_attacking:
 		_attack_buffered = true
 		_attack_buffer_time_left = ATTACK_BUFFER_TIMEOUT
 	else:
-		anim_player.play("attack")
+		_dispatch_attack()
 		_is_attacking = true
+
+func _dispatch_attack() -> void:
+	var playback_speed := anim_length * attack_speed
+	anim_player.play("attack", -1, playback_speed)
