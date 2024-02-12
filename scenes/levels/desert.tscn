@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cnst0qb08vt73"]
+[gd_scene load_steps=8 format=3 uid="uid://cnst0qb08vt73"]
 
 [ext_resource type="Script" path="res://scripts/levels/level.gd" id="1_gl7fq"]
 [ext_resource type="Texture2D" uid="uid://duun6fuon4uqg" path="res://assets/background/desert/desert_background.png" id="2_g1sgx"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cpr1mnkiljavp" path="res://scenes/mole/desert_mole.tscn" id="4_klokl"]
 [ext_resource type="PackedScene" uid="uid://007eowsgjfid" path="res://scenes/mallet/revolver_mallet.tscn" id="5_l53ov"]
 [ext_resource type="PackedScene" uid="uid://bvxyw5jpu53hu" path="res://scenes/managers/potion_spawner.tscn" id="6_lddsh"]
+[ext_resource type="PackedScene" uid="uid://bxuobad2uawle" path="res://scenes/powerups/desert_health_potion.tscn" id="7_csb3e"]
 
 [node name="Desert" type="Node2D"]
 script = ExtResource("1_gl7fq")
@@ -30,6 +31,7 @@ z_index = 2
 
 [node name="PotionSpawner" parent="." node_paths=PackedStringArray("spawn_area") instance=ExtResource("6_lddsh")]
 spawn_area = NodePath("../SpawnArea")
+health_potion = ExtResource("7_csb3e")
 
 [connection signal="mole_spawned" from="MoleSpawner" to="." method="_on_mole_spawned"]
 [connection signal="health_potion_spawned" from="PotionSpawner" to="." method="_on_potion_spawned"]

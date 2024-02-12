@@ -53,7 +53,7 @@ func on_mole_defeated(position: Vector2, xp: int) -> void:
 	add_child(bubble_label)
 
 
-func _on_potion_spawned(potion: HealthPotion, position: Vector2) -> void:
+func _on_potion_spawned(potion: Node2D, position: Vector2) -> void:
 	potion.set_global_position(position)
 	potion.connect("hit", on_potion_hit)
 	add_child(potion)

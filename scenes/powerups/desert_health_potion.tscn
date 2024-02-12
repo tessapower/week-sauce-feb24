@@ -1,0 +1,169 @@
+[gd_scene load_steps=22 format=3 uid="uid://bxuobad2uawle"]
+
+[ext_resource type="Script" path="res://scripts/powerups/health_potion.gd" id="1_xfh0s"]
+[ext_resource type="Texture2D" uid="uid://bqxlqhnkk4rlf" path="res://assets/powerups_and_skills/desert_health_potion.png" id="2_admic"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pku3r"]
+atlas = ExtResource("2_admic")
+region = Rect2(1024, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_druv1"]
+atlas = ExtResource("2_admic")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_srawc"]
+atlas = ExtResource("2_admic")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fw0uq"]
+atlas = ExtResource("2_admic")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahk6x"]
+atlas = ExtResource("2_admic")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1akh"]
+atlas = ExtResource("2_admic")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1sfm1"]
+atlas = ExtResource("2_admic")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jf6wi"]
+atlas = ExtResource("2_admic")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dj5id"]
+atlas = ExtResource("2_admic")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lsj0i"]
+atlas = ExtResource("2_admic")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_06y37"]
+atlas = ExtResource("2_admic")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wp6kc"]
+atlas = ExtResource("2_admic")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_buhxj"]
+atlas = ExtResource("2_admic")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8sq6c"]
+atlas = ExtResource("2_admic")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7c308"]
+atlas = ExtResource("2_admic")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d033d"]
+atlas = ExtResource("2_admic")
+region = Rect2(1024, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omwtx"]
+atlas = ExtResource("2_admic")
+region = Rect2(1024, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fseqk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pku3r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_druv1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_srawc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fw0uq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ahk6x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k1akh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1sfm1")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"disappear",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jf6wi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dj5id")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lsj0i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_06y37")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wp6kc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_buhxj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8sq6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7c308")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d033d")
+}],
+"loop": false,
+"name": &"emerge",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omwtx")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 1.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5kwis"]
+radius = 26.0
+height = 72.0
+
+[node name="DesertHealthPotion" type="CharacterBody2D" groups=["whackable"]]
+script = ExtResource("1_xfh0s")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fseqk")
+animation = &"emerge"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
+shape = SubResource("CapsuleShape2D_5kwis")
+
+[node name="DisappearTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]
+[connection signal="timeout" from="DisappearTimer" to="." method="_on_disappear_timer_timeout"]

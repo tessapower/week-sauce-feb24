@@ -15,12 +15,14 @@ extends Node2D
 const BUFFER_AREA = preload("res://scenes/mole/buffer_area.tscn")
 @onready var buffer = BUFFER_AREA.instantiate()
 
-const HEALTH_POTION = preload("res://scenes/powerups/health_potion.tscn")
+## The health potion scene to be spawned.
+@export var health_potion: PackedScene
 
-signal health_potion_spawned(potion: HealthPotion, position: Vector2)
+signal health_potion_spawned(potion: Node2D, position: Vector2)
 
 func _ready() -> void:
 	assert(spawn_area != null)
+	assert(health_potion != null)
 
 	var random_point = SpawnUtils.random_spawn_point(spawn_area)
 	buffer.set_global_position(random_point)
@@ -41,4 +43,4 @@ func spawn_health_potion() -> void:
 	var max_health = game_state_manager.player.max_hp()
 
 	if current_health < max_health and randf() < chance_of_potion:
-		emit_signal("health_potion_spawned", HEALTH_POTION.instantiate(), buffer.global_position)
+		emit_signal("health_potion_spawned", health_potion.instantiate(), buffer.global_position)
