@@ -1,12 +1,10 @@
 class_name Level extends Node
+
 ## level.gd: This script manages adding spawned moles to the level scene.
 ##
 ## Author(s): Tessa Power, Phuwasate Lutchanont
 
 @onready var mallet: Node2D = $Mallet
-
-const HEALTH_POTION = preload("res://scenes/powerups/health_potion.tscn")
-const HEALTH_POTION_CHANCE: float = 1.0
 
 const MUSIC: AudioStream = preload("res://assets/sounds/Sakura-Girl-Daisy-chosic.com_.mp3")
 const MUSIC_VOLUME := -15
@@ -55,13 +53,12 @@ func on_mole_defeated(position: Vector2, xp: int) -> void:
 	add_child(bubble_label)
 
 
-func _on_health_potion_timer_timeout():
-	var current_health = game_state_manager.player.hp()
-	var max_health = game_state_manager.player.max_hp()
-	if current_health < max_health and randf() < HEALTH_POTION_CHANCE:
-		var potion: Node2D = HEALTH_POTION.instantiate()
-		potion.set_global_position(SpawnUtils.random_spawn_point($SpawnArea))
-		add_child(potion)
+func _on_potion_spawned(potion: HealthPotion, position: Vector2) -> void:
+	potion.set_global_position(position)
+	potion.connect("hit", on_potion_hit)
+	add_child(potion)
+
+
 
 
 func _on_game_over() -> void:

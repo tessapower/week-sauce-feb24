@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bq5pwxfdsepo4"]
+[gd_scene load_steps=7 format=3 uid="uid://bq5pwxfdsepo4"]
 
 [ext_resource type="Script" path="res://scripts/levels/level.gd" id="1_se0hv"]
 [ext_resource type="Texture2D" uid="uid://psxa32s2f35x" path="res://assets/background/underwater/underwater_background.png" id="2_fo3yx"]
 [ext_resource type="PackedScene" uid="uid://837y17to6u7f" path="res://scenes/managers/mole_spawner.tscn" id="3_15ju8"]
 [ext_resource type="PackedScene" uid="uid://cqvoaet1c7rnn" path="res://scenes/mole/scuba_mole.tscn" id="4_3qfv7"]
-[ext_resource type="PackedScene" uid="uid://bpjssg4qnfca3" path="res://scenes/mallet/shell_mallet.tscn" id="5_x3ww5"]
+[ext_resource type="PackedScene" uid="uid://dsnmsgk5roino" path="res://scenes/mallet/shell_mallet.tscn" id="5_x3ww5"]
+[ext_resource type="PackedScene" uid="uid://bvxyw5jpu53hu" path="res://scenes/managers/potion_spawner.tscn" id="6_vxyy4"]
 
 [node name="Underwater" type="Node2D"]
 script = ExtResource("1_se0hv")
@@ -27,9 +28,8 @@ mole_scene = ExtResource("4_3qfv7")
 [node name="Mallet" parent="." instance=ExtResource("5_x3ww5")]
 z_index = 2
 
-[node name="HealthPotionTimer" type="Timer" parent="."]
-wait_time = 10.0
-autostart = true
+[node name="PotionSpawner" parent="." node_paths=PackedStringArray("spawn_area") instance=ExtResource("6_vxyy4")]
+spawn_area = NodePath("../SpawnArea")
 
 [connection signal="mole_spawned" from="MoleSpawner" to="." method="_on_mole_spawned"]
-[connection signal="timeout" from="HealthPotionTimer" to="." method="_on_health_potion_timer_timeout"]
+[connection signal="health_potion_spawned" from="PotionSpawner" to="." method="_on_potion_spawned"]
