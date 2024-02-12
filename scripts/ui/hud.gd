@@ -28,12 +28,12 @@ func _on_player_level_changed(new_value: int) -> void:
 
 
 func _on_player_hp_changed(new_value: int) -> void:
-  health_bar.get_node("Flash").play("flash")
+	health_bar.get_node("Flash").play("flash")
 	health_bar.value = new_value
 
 func _on_player_max_hp_changed(new_value: int) -> void:
 	health_bar.max_value = new_value
-  health_bar.get_node("Flash").play("flash")
+	health_bar.get_node("Flash").play("flash")
 
 
 func _on_player_exp_changed(new_value: int) -> void:

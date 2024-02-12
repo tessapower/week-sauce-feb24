@@ -1,12 +1,9 @@
 class_name HealthPotion extends CharacterBody2D
 
-# mole_spawner.gd:
-#	Handles the instantiation of mole and the location at which to spawn it.
-#	This class does not handle the addition of the instantiated mole
-#	to the scene tree and setting its position. A manager must be connected
-#	to the 'mole_spawned' signal and handles the aforementioned procedures.
-
-# Author: Tessa Power
+## health_potion.gd: A health potion that gives the player back some of their
+##	health throughout the game.
+##
+## Author: Tessa Power
 
 const INCREASE: int = 30
 
