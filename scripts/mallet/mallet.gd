@@ -13,8 +13,6 @@ const ATTACK_BUFFER_TIMEOUT := 0.5
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var hit_area: Area2D = $HitArea
 
-
-
 @export var attack_speed: float
 
 @onready var anim_length: float = anim_player.get_animation("attack").length

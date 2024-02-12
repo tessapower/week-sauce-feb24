@@ -1,5 +1,9 @@
 class_name SpawnUtils extends Node
 
+## spawn_utils.gd:
+##
+##	Author(s):
+
 static var spawn_area_start: Vector2
 static var spawn_area_end: Vector2
 
