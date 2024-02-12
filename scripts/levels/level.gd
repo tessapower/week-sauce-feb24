@@ -25,7 +25,7 @@ func _ready() -> void:
 
 	game_state_manager.initialize_for_scene()
 	spawn_timer.start()
-	game_state_manager.player_died.connect(_on_game_over)
+	game_state_manager.player.hp_reached_zero.connect(_on_game_over)
 	SoundManager.play_music_at_volume(MUSIC, MUSIC_VOLUME)
 
 func _exit_tree() -> void:
@@ -45,8 +45,8 @@ func _on_mole_spawned(mole: Mole, position: Vector2) -> void:
 
 
 func _on_health_potion_timer_timeout():
-	var current_health = game_state_manager.player_health
-	var max_health = game_state_manager.player_max_health
+	var current_health = game_state_manager.player.hp()
+	var max_health = game_state_manager.player.max_hp()
 	if current_health < max_health and randf() < HEALTH_POTION_CHANCE:
 		var potion: Node2D = HEALTH_POTION.instantiate()
 		potion.set_global_position(SpawnUtils.random_spawn_point($SpawnArea))
