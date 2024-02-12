@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3gri6uv0bjof"]
+
+[ext_resource type="FontFile" uid="uid://yfe1lhtsrxpb" path="res://assets/fonts/daydream_font/Daydream.ttf" id="1_b2a3o"]
+[ext_resource type="Script" path="res://scripts/ui/bubble_label.gd" id="2_ovyef"]
+
+[node name="BubbleLabel" type="Label"]
+anchors_preset = -1
+anchor_left = 0.466927
+anchor_right = 0.533073
+anchor_bottom = 0.0305556
+offset_right = 6.10352e-05
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_b2a3o")
+theme_override_font_sizes/font_size = 24
+text = "+10 XP"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_ovyef")
+metadata/_edit_use_anchors_ = true

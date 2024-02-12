@@ -1,22 +1,95 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxd4ay51cgpsn"]
+[gd_scene load_steps=15 format=3 uid="uid://dxd4ay51cgpsn"]
 
 [ext_resource type="Script" path="res://scripts/ui/hud.gd" id="1_21226"]
 [ext_resource type="PackedScene" uid="uid://dqa3jx7uplr8u" path="res://scenes/ui/health_bar.tscn" id="1_vpoey"]
+[ext_resource type="Script" path="res://scripts/ui/flashing_label.gd" id="2_f6b3b"]
 [ext_resource type="PackedScene" uid="uid://bngeq4uyqbxw7" path="res://scenes/ui/experience_bar.tscn" id="2_pxrtk"]
+[ext_resource type="Theme" uid="uid://d04xevp1fvtso" path="res://assets/ui/button_theme.tres" id="3_by7lt"]
 [ext_resource type="FontFile" uid="uid://ctked2r3wmi52" path="res://assets/fonts/dogica_font/OTF/dogicapixelbold.otf" id="3_pg6rt"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_htsxh"]
-font_size = 48
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
+[sub_resource type="Animation" id="Animation_1li3s"]
+resource_name = "flash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScoreLabel:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.0196078, 0.643137, 0, 1), Color(1, 1, 1, 1), Color(0.0196078, 0.643137, 0, 1), Color(1, 1, 1, 1), Color(0.0196078, 0.643137, 0, 1), Color(1, 1, 1, 1)]
+}
 
-[sub_resource type="LabelSettings" id="LabelSettings_kpf5d"]
-font_size = 48
-font_color = Color(1, 0.815686, 0, 1)
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_omgyr"]
+_data = {
+"flash": SubResource("Animation_1li3s")
+}
 
-[node name="Hud" type="Control" node_paths=PackedStringArray("level_label", "health_bar", "exp_bar", "score_label")]
+[sub_resource type="Animation" id="Animation_ho2ce"]
+resource_name = "flash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0.815686, 0, 1), Color(1, 1, 1, 1), Color(1, 0.815686, 0, 1), Color(1, 1, 1, 1), Color(1, 0.815686, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8n57t"]
+_data = {
+"flash": SubResource("Animation_ho2ce")
+}
+
+[sub_resource type="Animation" id="Animation_cw1n1"]
+resource_name = "flash"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.588235), Color(1, 1, 1, 1), Color(1, 1, 1, 0.588235), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e6a6i"]
+_data = {
+"flash": SubResource("Animation_cw1n1")
+}
+
+[sub_resource type="Animation" id="Animation_phqbe"]
+resource_name = "flash"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.588235), Color(1, 1, 1, 1), Color(1, 1, 1, 0.588235), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ermld"]
+_data = {
+"flash": SubResource("Animation_phqbe")
+}
+
+[node name="Hud" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,62 +97,60 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_21226")
-level_label = NodePath("VBoxContainer/BottomUI/LevelLabel")
-health_bar = NodePath("VBoxContainer/BottomUI/GridContainer/HealthBar")
-exp_bar = NodePath("VBoxContainer/BottomUI/GridContainer/ExperienceBar")
-score_label = NodePath("VBoxContainer/ScoreLabel")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Content" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 50.0
 offset_top = 50.0
 offset_right = 3690.0
 offset_bottom = 2010.0
 scale = Vector2(0.5, 0.5)
-theme_override_constants/separation = 12
+theme_override_constants/separation = 1750
 alignment = 2
 
-[node name="ScoreLabel" type="Label" parent="VBoxContainer"]
+[node name="ScoreLabel" type="Label" parent="Content"]
 layout_mode = 2
-size_flags_vertical = 1
-theme_override_colors/font_outline_color = Color(0.180392, 0.180392, 0.180392, 1)
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("3_pg6rt")
-theme_override_font_sizes/font_size = 30
-text = "1000000"
-label_settings = SubResource("LabelSettings_htsxh")
+theme = ExtResource("3_by7lt")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Score: 000000000"
 horizontal_alignment = 2
-vertical_alignment = 1
+uppercase = true
+script = ExtResource("2_f6b3b")
 
-[node name="MiddlePadding" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-alignment = 2
+[node name="Flash" type="AnimationPlayer" parent="Content/ScoreLabel"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_omgyr")
+}
 
-[node name="BottomUI" type="HBoxContainer" parent="VBoxContainer"]
+[node name="BottomUI" type="HBoxContainer" parent="Content"]
 layout_direction = 2
 layout_mode = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 80
 
-[node name="LevelLabel" type="Label" parent="VBoxContainer/BottomUI"]
+[node name="LevelLabel" type="Label" parent="Content/BottomUI"]
 layout_mode = 2
-size_flags_vertical = 1
-theme_override_colors/font_outline_color = Color(0.180392, 0.180392, 0.180392, 1)
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("3_pg6rt")
-theme_override_font_sizes/font_size = 30
-text = "LV 01"
-label_settings = SubResource("LabelSettings_kpf5d")
-horizontal_alignment = 2
-vertical_alignment = 1
+theme = ExtResource("3_by7lt")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Lvl: 001"
+uppercase = true
+script = ExtResource("2_f6b3b")
 
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer/BottomUI"]
+[node name="Flash" type="AnimationPlayer" parent="Content/BottomUI/LevelLabel"]
+libraries = {
+"": SubResource("AnimationLibrary_8n57t")
+}
+
+[node name="HealthAndXP" type="GridContainer" parent="Content/BottomUI"]
 layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
 columns = 2
 
-[node name="HealthLabel" type="Label" parent="VBoxContainer/BottomUI/GridContainer"]
+[node name="HealthLabel" type="Label" parent="Content/BottomUI/HealthAndXP"]
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0.180005, 0.180005, 0.180005, 1)
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("3_pg6rt")
@@ -87,14 +158,21 @@ theme_override_font_sizes/font_size = 30
 text = "HEALTH:"
 horizontal_alignment = 2
 vertical_alignment = 1
+script = ExtResource("2_f6b3b")
 
-[node name="HealthBar" parent="VBoxContainer/BottomUI/GridContainer" instance=ExtResource("1_vpoey")]
+[node name="HealthBar" parent="Content/BottomUI/HealthAndXP" instance=ExtResource("1_vpoey")]
 custom_minimum_size = Vector2(500, 10)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
+value = 100.0
 
-[node name="ExperienceLabel" type="Label" parent="VBoxContainer/BottomUI/GridContainer"]
+[node name="Flash" type="AnimationPlayer" parent="Content/BottomUI/HealthAndXP/HealthBar"]
+libraries = {
+"": SubResource("AnimationLibrary_e6a6i")
+}
+
+[node name="ExperienceLabel" type="Label" parent="Content/BottomUI/HealthAndXP"]
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_colors/font_outline_color = Color(0.180392, 0.180392, 0.180392, 1)
@@ -105,7 +183,13 @@ text = "XP:"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="ExperienceBar" parent="VBoxContainer/BottomUI/GridContainer" instance=ExtResource("2_pxrtk")]
+[node name="ExperienceBar" parent="Content/BottomUI/HealthAndXP" instance=ExtResource("2_pxrtk")]
 custom_minimum_size = Vector2(2000, 0)
 layout_mode = 2
 size_flags_horizontal = 0
+value = 0.0
+
+[node name="Flash" type="AnimationPlayer" parent="Content/BottomUI/HealthAndXP/ExperienceBar"]
+libraries = {
+"": SubResource("AnimationLibrary_ermld")
+}

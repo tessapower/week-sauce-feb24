@@ -13,6 +13,7 @@ class_name GameStateManager extends Node
 func _process(delta: float) -> void:
 	_process_time(delta)
 
+
 func initialize_for_scene() -> void:
 	player.reset()
 	_reset_score()
@@ -63,6 +64,7 @@ func add_score(extra_score: int) -> void:
 
 	score_changed.emit(current_score)
 
+
 func _reset_score() -> void:
 	current_score = 0
 	score_changed.emit(current_score)
@@ -88,14 +90,15 @@ var is_paused: bool = false:
 		else:
 			unpaused.emit()
 
-
 # ----------Time Monitoring----------
 
 var time_elapsed: float:
 	get: return time_elapsed
 
+
 func _reset_time() -> void:
 	time_elapsed = 0
+
 
 func _process_time(delta: float) -> void:
 	time_elapsed += delta

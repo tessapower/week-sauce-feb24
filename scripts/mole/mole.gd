@@ -4,7 +4,6 @@ class_name Mole extends CharacterBody2D
 ##
 ## Author(s): Phuwasate Lutchanont, Tessa Power
 
-## Animations
 @export var data: MoleData
 
 @onready var animated_sprite = $AnimatedSprite2D
@@ -15,13 +14,16 @@ class_name Mole extends CharacterBody2D
 const EMERGE_SOUND: AudioStream = preload("res://assets/sounds/deplacementroche.mp3")
 const ATTACK_SOUND: AudioStream = preload("res://assets/sounds/swing-whoosh-weapon.mp3")
 
+signal defeated(position: Vector2, xp: int)
+
 ## Callback function intended to be called when hit by the player's mallet.
 func on_hit() -> void:
 	# TODO: refactor this to take a damage value when powerups are implemented
 	apply_damage(50)
 	# Play the appropriate animation
 	if current_health == 0: animated_sprite.play("defeated")
-	else: animated_sprite.play("hit")
+	else:
+		animated_sprite.play("hit")
 
 
 func apply_damage(value: int) -> void:
@@ -84,6 +86,7 @@ func _defeat() -> void:
 	collision_shape.set_deferred("disabled", true)
 	game_state_manager.player.inc_exp(exp_reward)
 	game_state_manager.add_score(score_reward)
+	emit_signal("defeated", global_position, exp_reward)
 
 
 # Initialzes mole stats from the data
