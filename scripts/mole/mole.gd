@@ -69,7 +69,7 @@ func _on_animation_finished() -> void:
 func _on_attack_timer_timeout() -> void:
 	# Only attack if the mole isn't already in the middle of another animation
 	if animated_sprite.animation == "idle":
-		game_state_manager.player.dec_hp(attack_damage)
+		game_state_manager.player().hp_system().apply_damage(attack_damage)
 		animated_sprite.play("attack")
 		SoundManager.play_sound_with_pitch(ATTACK_SOUND, randf_range(0.75, 1.25))
 
@@ -84,8 +84,8 @@ func _disappear() -> void:
 func _defeat() -> void:
 	# Make sure we don't monitor for collisions and interrupt this
 	collision_shape.set_deferred("disabled", true)
-	game_state_manager.player.inc_exp(exp_reward)
-	game_state_manager.add_score(score_reward)
+	game_state_manager.player().exp_system().increase_exp(exp_reward)
+	game_state_manager.score_system().add_current_score(score_reward)
 	emit_signal("defeated", global_position, exp_reward)
 
 

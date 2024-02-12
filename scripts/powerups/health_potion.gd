@@ -21,7 +21,7 @@ func _ready():
 func on_hit() -> void:
 	if animated_sprite.animation == "idle":
 		collision_shape.set_deferred("disabled", true)
-		game_state_manager.player.inc_hp(INCREASE)
+		game_state_manager.player().hp_system().heal(INCREASE)
 		SoundManager.play_sound(HEAL_SOUND)
 		animated_sprite.play("disappear")
 		emit_signal("hit", global_position, INCREASE)

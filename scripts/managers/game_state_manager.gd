@@ -11,14 +11,14 @@ class_name GameStateManager extends Node
 
 
 func _process(delta: float) -> void:
-	_process_time(delta)
+	_time_system.process(delta)
 
 
 func initialize_for_scene() -> void:
-	player.reset()
-	_reset_score()
-	_reset_time()
-	is_paused = false
+	_player.reset()
+	_score_system.reset()
+	_time_system.reset()
+	_pause_system.set_paused(false)
 
 # ----------Level Scene----------
 
@@ -34,71 +34,17 @@ var current_level: String = level_scenes.get(LEVEL.grassy_field)
 func set_level(level: LEVEL) -> void:
 	current_level = level_scenes.get(level)
 
-
 func load_current_level() -> void:
 	get_tree().change_scene_to_file(current_level)
 
-# ----------Player Health----------
+func player() -> Player: return _player
+var _player := Player.new()
 
-var player := Player.new()
+func score_system() -> ScoreSystem: return _score_system
+var _score_system := ScoreSystem.new()
 
-# ----------Score----------
+func pause_system() -> PauseSystem: return _pause_system
+var _pause_system := PauseSystem.new(self)
 
-var current_score: int:
-	get:
-		return current_score
-
-	set(new_value):
-		current_score = new_value
-		score_changed.emit(current_score)
-
-var high_score: int:
-	get: return high_score
-
-signal score_changed(new_value: int)
-
-func add_score(extra_score: int) -> void:
-	current_score += extra_score
-	if current_score > high_score:
-		high_score = current_score
-
-	score_changed.emit(current_score)
-
-
-func _reset_score() -> void:
-	current_score = 0
-	score_changed.emit(current_score)
-
-
-# ----------Pausing----------
-
-signal paused()
-signal unpaused()
-
-var is_paused: bool = false:
-	get:
-		return is_paused
-
-	set(new_value):
-		if is_paused == new_value:
-			return
-
-		is_paused = new_value
-		get_tree().paused = is_paused
-		if is_paused:
-			paused.emit()
-		else:
-			unpaused.emit()
-
-# ----------Time Monitoring----------
-
-var time_elapsed: float:
-	get: return time_elapsed
-
-
-func _reset_time() -> void:
-	time_elapsed = 0
-
-
-func _process_time(delta: float) -> void:
-	time_elapsed += delta
+func time_system() -> TimeSystem: return _time_system
+var _time_system := TimeSystem.new()

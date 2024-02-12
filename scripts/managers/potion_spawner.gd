@@ -39,8 +39,8 @@ func _on_timer_timeout() -> void:
 
 
 func spawn_health_potion() -> void:
-	var current_health = game_state_manager.player.hp()
-	var max_health = game_state_manager.player.max_hp()
+	var current_health = game_state_manager.player().hp_system().hp()
+	var max_health = game_state_manager.player().hp_system().max_hp()
 
 	if current_health < max_health and randf() < chance_of_potion:
 		emit_signal("health_potion_spawned", health_potion.instantiate(), buffer.global_position)
