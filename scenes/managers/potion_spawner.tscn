@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvxyw5jpu53hu"]
+
+[ext_resource type="Script" path="res://scripts/managers/potion_spawner.gd" id="1_ol8nc"]
+
+[node name="PotionSpawner" type="Node2D"]
+script = ExtResource("1_ol8nc")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
