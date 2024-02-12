@@ -48,7 +48,6 @@ _data = {
 [node name="BasicMallet" type="Node2D"]
 position = Vector2(772, 467)
 script = ExtResource("1_hma0e")
-attack_speed = 2.0
 
 [node name="HitArea" type="Area2D" parent="."]
 
