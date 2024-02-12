@@ -1,0 +1,169 @@
+[gd_scene load_steps=22 format=3 uid="uid://7r78266drvuy"]
+
+[ext_resource type="Script" path="res://scripts/powerups/health_potion.gd" id="1_q6k8o"]
+[ext_resource type="Texture2D" uid="uid://d36hy3nc0n86x" path="res://assets/powerups_and_skills/underwater_health_potion.png" id="2_5soco"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7hfcl"]
+atlas = ExtResource("2_5soco")
+region = Rect2(1024, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5sqgq"]
+atlas = ExtResource("2_5soco")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_im40b"]
+atlas = ExtResource("2_5soco")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mau1b"]
+atlas = ExtResource("2_5soco")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ufol"]
+atlas = ExtResource("2_5soco")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdj04"]
+atlas = ExtResource("2_5soco")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v46xd"]
+atlas = ExtResource("2_5soco")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8i6bi"]
+atlas = ExtResource("2_5soco")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxkyg"]
+atlas = ExtResource("2_5soco")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7qk3"]
+atlas = ExtResource("2_5soco")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mjr3g"]
+atlas = ExtResource("2_5soco")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pn2kf"]
+atlas = ExtResource("2_5soco")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hrq5o"]
+atlas = ExtResource("2_5soco")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjonn"]
+atlas = ExtResource("2_5soco")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wv2wv"]
+atlas = ExtResource("2_5soco")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3j7r"]
+atlas = ExtResource("2_5soco")
+region = Rect2(1024, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpdie"]
+atlas = ExtResource("2_5soco")
+region = Rect2(1024, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fseqk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7hfcl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5sqgq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_im40b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mau1b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ufol")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdj04")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v46xd")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"disappear",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8i6bi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxkyg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d7qk3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mjr3g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pn2kf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hrq5o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjonn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wv2wv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3j7r")
+}],
+"loop": false,
+"name": &"emerge",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bpdie")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 1.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5kwis"]
+radius = 26.0
+height = 72.0
+
+[node name="ScubaHealthPotion" type="CharacterBody2D" groups=["whackable"]]
+script = ExtResource("1_q6k8o")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fseqk")
+animation = &"emerge"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
+shape = SubResource("CapsuleShape2D_5kwis")
+
+[node name="DisappearTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]
+[connection signal="timeout" from="DisappearTimer" to="." method="_on_disappear_timer_timeout"]
