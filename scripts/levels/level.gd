@@ -59,6 +59,10 @@ func _on_potion_spawned(potion: HealthPotion, position: Vector2) -> void:
 	add_child(potion)
 
 
+func on_potion_hit(position: Vector2, health: int) -> void:
+	var bubble_label = BUBBLE_LABEL.instantiate()
+	bubble_label.init("+ " + str(health) + "HP", Color.SEA_GREEN, position)
+	add_child(bubble_label)
 
 
 func _on_game_over() -> void:
