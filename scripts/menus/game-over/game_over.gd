@@ -19,7 +19,6 @@ func _ready() -> void:
 
 
 func _on_play_pressed() -> void:
-	# TODO: set the level played in GSM so the player can replay the same level
 	SoundManager.play_sound(TRANSITION_BUTTON_SOUND)
 	game_state_manager.load_current_level()
 
