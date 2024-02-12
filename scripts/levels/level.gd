@@ -3,7 +3,6 @@ class_name Level extends Node
 ##
 ## Author(s): Tessa Power, Phuwasate Lutchanont
 
-@onready var spawn_timer = $MoleSpawner/Timer
 @onready var mallet: Node2D = $Mallet
 
 const HEALTH_POTION = preload("res://scenes/powerups/health_potion.tscn")
@@ -24,8 +23,10 @@ func _ready() -> void:
 	add_child(pause)
 	add_child(hud)
 
+	# Start the spawn timers
+	$MoleSpawner/Timer.start()
+
 	game_state_manager.initialize_for_scene()
-	spawn_timer.start()
 	game_state_manager.player.hp_reached_zero.connect(_on_game_over)
 	SoundManager.play_music_at_volume(MUSIC, MUSIC_VOLUME)
 
