@@ -10,7 +10,14 @@ class_name Hud extends Control
 @onready var exp_bar: Range = get_node("Content/BottomUI/HealthAndXP/ExperienceBar")
 @onready var score_label: FlashingLabel = get_node("Content/ScoreLabel")
 
+
+# Powerups
+@onready var power_ups_section = get_node("Content/BottomUI/PowerUps")
+var power_ups: Dictionary = {}
+const POWER_UP = preload("res://scenes/powerups/power_up_icon.tscn")
+
 const BUBBLE_LABEL = preload("res://scenes/ui/bubble_label.tscn")
+
 
 func _ready() -> void:
 	assert(level_label != null)
@@ -70,3 +77,18 @@ func _on_score_changed(new_value: int) -> void:
 	score_label.text = "SCORE: %09d" % new_value
 	if new_value > 0:
 		score_label.flash()
+
+
+func add_or_update_powerup(power_up: PowerUp) -> void:
+	if power_ups.has(power_up.name):
+		# Update the level label of the power up
+		power_ups[power_up.name].set_power_up_level(power_up.data().level())
+	else:
+		var new_power_up = POWER_UP.instantiate()
+		new_power_up.set_power_up_name(power_up.name)
+		new_power_up.set_power_up_icon(power_up.icon)
+		new_power_up.set_power_up_level(power_up.data().level())
+
+		# Add the powerup to our dictionary of powerups
+		power_ups[power_up.name] = new_power_up
+		power_ups_section.add_child(new_power_up)
