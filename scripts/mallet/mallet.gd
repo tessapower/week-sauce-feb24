@@ -13,10 +13,12 @@ const ATTACK_BUFFER_TIMEOUT := 0.5
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var hit_area: Area2D = $HitArea
 @onready var anim_length: float = anim_player.get_animation("attack").length
-@onready var stat_system: StatSystem = game_state_manager.player().stat_system()
+@onready var player: Player = game_state_manager.player()
+@onready var stat_system: StatSystem = player.stat_system()
 
 func _ready() -> void:
 	anim_player.animation_finished.connect(_on_animation_finished)
+	player.perma_attack_changed.connect(_on_player_perma_attack_changed)
 
 func _process(delta: float) -> void:
 	set_global_position(get_viewport().get_mouse_position())
@@ -64,17 +66,15 @@ func _dispatch_attack() -> void:
 	anim_player.play("attack", -1, playback_speed)
 
 
-func set_perma_attack(state: bool = true) -> void:
-	_perma_attack = state
-	if _perma_attack:
-		attack() # start attack
-		attack() # queue another attack into buffer
+func _on_player_perma_attack_changed(state: bool) -> void:
+	if state:
+		attack()
+		attack()
 
 
 func _unset_attack_buffered() -> void:
-	_attack_buffered = _perma_attack
+	_attack_buffered = player.perma_attack()
 
 var _attack_buffered: bool = false
 var _attack_buffer_time_left: float
 var _is_attacking: bool = false
-var _perma_attack: bool = false

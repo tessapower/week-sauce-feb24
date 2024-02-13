@@ -17,3 +17,14 @@ var _hp_system := HealthSystem.new(_exp_system)
 var _stat_system := StatSystem.new(_exp_system)
 var _power_up_system := PowerUpSystem.new(self)
 var _sound_system := SoundSystem.new(_exp_system, _hp_system)
+
+
+signal perma_attack_changed(state: bool)
+
+func set_perma_attack(state: bool = true) -> void:
+	_perma_attack = state
+	perma_attack_changed.emit(_perma_attack)
+
+func perma_attack() -> bool: return _perma_attack
+
+var _perma_attack: bool = false
