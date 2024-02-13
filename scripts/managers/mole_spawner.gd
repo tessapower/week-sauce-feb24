@@ -45,7 +45,7 @@ func _ready():
 	# Set the spawn timer
 	$Timer.wait_time = START_WAIT_TIME
 	# Watch for player levelling up
-	game_state_manager.player.connect("level_changed", on_level_up)
+	game_state_manager.player().exp_system().level_changed.connect(on_level_up)
 
 	# Buffer Object
 	var random_point = SpawnUtils.random_spawn_point(spawn_area)
