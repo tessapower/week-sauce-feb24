@@ -1,5 +1,7 @@
 class_name ColossalStrengthPowerUp extends PowerUp
 
+const EFFECT := preload("res://scenes/powerups/puff_effect.tscn")
+
 @export var atk_dmg_mods: Array[float] = []
 
 func _validate() -> void:
@@ -15,9 +17,15 @@ class Data extends PowerUp.Data:
 
 	func level_up(player: Player) -> void:
 		super.level_up(player)
-		player.stat_system().add_atk_dmg_mod(power_up().name,power_up().atk_dmg_mods[level()])
 
-		# TODO: at the final, attacks become AOE
+		var stat_system: StatSystem = player.stat_system()
+
+		stat_system.add_atk_dmg_mod(power_up().name, power_up().atk_dmg_mods[level() - 1])
+		
+		if level() == FINAL_LEVEL:
+			stat_system.add_atk_radius_mod(power_up().name, 3.5)
+			player.set_attack_effect(EFFECT)
+
 
 	func power_up() -> ColossalStrengthPowerUp:
 		return super.power_up()

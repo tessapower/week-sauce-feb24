@@ -10,15 +10,25 @@ const HIT_SOUND: AudioStream = preload("res://assets/sounds/bonk-sound-effect.mp
 
 const ATTACK_BUFFER_TIMEOUT := 0.5
 
+@export var level: Level
+
+
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var hit_area: Area2D = $HitArea
 @onready var anim_length: float = anim_player.get_animation("attack").length
 @onready var player: Player = game_state_manager.player()
 @onready var stat_system: StatSystem = player.stat_system()
+@onready var collision_area: CollisionShape2D = hit_area.get_child(0)
+@onready var collision_shape: CircleShape2D = collision_area.shape
+@onready var base_collision_radius: float = collision_shape.radius
+
 
 func _ready() -> void:
+	assert(level)
+
 	anim_player.animation_finished.connect(_on_animation_finished)
 	player.perma_attack_changed.connect(_on_player_perma_attack_changed)
+	player.stat_system().atk_radius_changed.connect(_on_player_attack_radius_changed)
 
 func _process(delta: float) -> void:
 	set_global_position(get_viewport().get_mouse_position())
@@ -42,6 +52,13 @@ func _on_hit() -> void:
 			if obj.is_in_group("whackable"):
 				obj.on_hit()
 				SoundManager.play_sound_with_pitch(HIT_SOUND, randf_range(0.75, 1.25))
+
+	# Spawn special effect
+	var effect = player.attack_effect()
+	if effect:
+		var effect_instance = effect.instantiate()
+		level.add_child(effect_instance)
+		effect_instance.set_global_position(collision_area.global_position)
 
 
 func _process_attack_buffer(delta: float) -> void:
@@ -70,6 +87,10 @@ func _on_player_perma_attack_changed(state: bool) -> void:
 	if state:
 		attack()
 		attack()
+
+
+func _on_player_attack_radius_changed(value: float) -> void:
+	collision_shape.radius = value
 
 
 func _unset_attack_buffered() -> void:

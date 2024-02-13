@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bogniwo3maagl" path="res://assets/mallet/basic_mallet.png" id="2_0pyra"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0jyjo"]
-radius = 38.0132
+radius = 35.0
 
 [sub_resource type="Animation" id="Animation_gg1oe"]
 resource_name = "attack"

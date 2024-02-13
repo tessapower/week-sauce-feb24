@@ -15,7 +15,7 @@ class Data extends PowerUp.Data:
 
 	func level_up(player: Player) -> void:
 		super.level_up(player)
-		player.stat_system().add_atk_spd_mod(power_up().name, power_up().atk_spd_mods[level()])
+		player.stat_system().add_atk_spd_mod(power_up().name, power_up().atk_spd_mods[level() - 1])
 		if level() == FINAL_LEVEL: player.set_perma_attack()
 
 	func power_up() -> SwiftnessPowerUp:

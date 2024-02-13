@@ -1,10 +1,10 @@
 class_name PowerUpSystem
 
 
-const DB := preload("res://resources/powerups/power_up_db.tres")
+var DB := load("res://resources/powerups/power_up_db.tres")
 
-func _init(player: Player) -> void:
-	_player = player
+func _init(player_: Player) -> void:
+	_player = player_
 	call_deferred("init_deferred")
 
 func init_deferred() -> void:
@@ -26,4 +26,5 @@ func _on_player_leveled_up() -> void:
 func power_up_data() -> Dictionary: return _power_up_data
 var _power_up_data: Dictionary
 
+func player() -> Player: return _player
 var _player: Player

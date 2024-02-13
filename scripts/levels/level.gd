@@ -1,4 +1,4 @@
-class_name Level extends Node
+class_name Level extends Node2D
 
 ## level.gd: This script manages adding spawned moles to the level scene.
 ##

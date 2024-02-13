@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://b4gfhrp6t2i15"]
+[gd_scene load_steps=45 format=3 uid="uid://b4gfhrp6t2i15"]
 
 [ext_resource type="Texture2D" uid="uid://6iuuvllqsgfr" path="res://assets/powerups_and_skills/Effect_PuffAndStars_1_120x109.png" id="1_4ca1m"]
 
@@ -304,17 +304,13 @@ animations = [{
 "speed": 30.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_dgpke"]
-radius = 39.0128
-
 [node name="PuffEffect" type="Node2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_sg0h5")
+autoplay = "default"
 frame = 41
 frame_progress = 1.0
 
-[node name="HitArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
-shape = SubResource("CircleShape2D_dgpke")
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="queue_free"]
