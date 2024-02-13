@@ -10,10 +10,14 @@ class_name Hud extends Control
 @onready var exp_bar: Range = get_node("Content/BottomUI/HealthAndXP/ExperienceBar")
 @onready var score_label: FlashingLabel = get_node("Content/ScoreLabel")
 
+
 # Powerups
 @onready var power_ups_section = get_node("Content/BottomUI/PowerUps")
 var power_ups: Dictionary = {}
 const POWER_UP = preload("res://scenes/powerups/power_up_icon.tscn")
+
+const BUBBLE_LABEL = preload("res://scenes/ui/bubble_label.tscn")
+
 
 func _ready() -> void:
 	assert(level_label != null)
@@ -40,8 +44,19 @@ func _on_player_level_changed(new_value: int) -> void:
 
 
 func _on_player_hp_changed(new_value: int) -> void:
-	health_bar.get_node("Flash").play("flash")
+	# Add a bubble label for the health change
+	var bubble_label = BUBBLE_LABEL.instantiate()
+	var difference = new_value - health_bar.value
+	# Don't do anything if there is no difference
+	if difference == 0: return
+
+	var s = "+" if sign(difference) > 0 else ""
+	var color = Color.SEA_GREEN if difference > 0 else Color.CRIMSON
+	bubble_label.init(s + str(difference) + "HP", color, health_bar.global_position)
+	add_child(bubble_label)
+
 	health_bar.value = new_value
+	health_bar.get_node("Flash").play("flash")
 
 func _on_player_max_hp_changed(new_value: int) -> void:
 	health_bar.max_value = new_value

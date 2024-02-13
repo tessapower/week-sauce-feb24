@@ -1,7 +1,7 @@
 [gd_scene load_steps=53 format=3 uid="uid://cwosug7qr3qqs"]
 
 [ext_resource type="Script" path="res://scripts/mole/mole.gd" id="1_khpre"]
-[ext_resource type="Resource" uid="uid://cex6j6q85ny8r" path="res://resources/mole/normal_mole.tres" id="2_615r7"]
+[ext_resource type="Resource" uid="uid://0l7x7j06l7mg" path="res://resources/mole/golden_mole.tres" id="2_yysw6"]
 [ext_resource type="Texture2D" uid="uid://b477o7bl3fyfh" path="res://assets/mole/golden_mole/golden_mole_defeated.png" id="3_xfwvu"]
 [ext_resource type="Texture2D" uid="uid://o0vupj3m8i0p" path="res://assets/mole_hole/mole_hole.png" id="5_3hifw"]
 [ext_resource type="Texture2D" uid="uid://7jdclnmib3d8" path="res://assets/mole/golden_mole/golden_mole.png" id="5_dtekm"]
@@ -352,7 +352,7 @@ height = 86.0
 
 [node name="GoldenMole" type="CharacterBody2D" groups=["moles", "whackable"]]
 script = ExtResource("1_khpre")
-data = ExtResource("2_615r7")
+data = ExtResource("2_yysw6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_apu38")

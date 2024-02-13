@@ -94,6 +94,7 @@ func _load_data() -> void:
 	exp_reward = data.exp_reward
 	score_reward = data.score_reward
 	disappear_timer.wait_time = data.time_until_disappear
-	max_health = data.max_health; current_health = max_health
+	max_health = data.max_health
+	current_health = max_health
 	attack_damage = data.attack_damage
 	attack_timer.wait_time = 1.0 / data.attack_speed
