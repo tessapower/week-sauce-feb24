@@ -18,7 +18,7 @@ func init(string: String, color: Color, pos: Vector2) -> void:
 
 func play_animation() -> void:
 	tween = create_tween().set_parallel(true)
-	tween.tween_property(self, "theme_override_colors/font_color", Color.TRANSPARENT, 1.0)
-	tween.parallel().tween_property(self, "global_position:y", global_position.y - 150, 1.0)
+	tween.tween_property(self, "theme_override_colors/font_color", Color.TRANSPARENT, 1.5).set_trans(Tween.TRANS_SINE)
+	tween.parallel().tween_property(self, "global_position:y", global_position.y - 150, 1.5)
 	await tween.finished
 	queue_free()
