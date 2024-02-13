@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="ColossalStrengthPowerUp" load_steps=3 format=3 uid="uid://bimlmv4ef3h7h"]
+[gd_resource type="Resource" script_class="ColossalStrengthPowerUp" load_steps=3 format=3 uid="uid://bjd58p0l6qddh"]
 
-[ext_resource type="Texture2D" uid="uid://tr81ppivyujk" path="res://assets/powerups_and_skills/colossal_strength.png" id="1_6ttle"]
-[ext_resource type="Script" path="res://scripts/powerups/colossal_strength_power_up.gd" id="1_rvrx1"]
+[ext_resource type="Texture2D" uid="uid://tr81ppivyujk" path="res://assets/powerups_and_skills/colossal_strength.png" id="1_4i8fl"]
+[ext_resource type="Script" path="res://scripts/powerups/colossal_strength_power_up.gd" id="1_qg173"]
 
 [resource]
-script = ExtResource("1_rvrx1")
-atk_dmg_mods = Array[float]([1.1, 1.25, 1.5, 1.75, 2.5, 5.0])
-name = &"colossal_strength"
-icon = ExtResource("1_6ttle")
+script = ExtResource("1_qg173")
+atk_dmg_mods = Array[float]([1.1, 1.25, 1.5, 2.0, 3.0, 5.0])
+name = &"colossal strength"
+icon = ExtResource("1_4i8fl")

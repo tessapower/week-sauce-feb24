@@ -1,7 +1,7 @@
 class_name PowerUpSystem
 
 
-var DB := load("res://resources/powerups/power_up_db.tres")
+const DB := preload("res://resources/powerups/power_up_db.tres")
 
 func _init(player_: Player) -> void:
 	_player = player_

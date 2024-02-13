@@ -1,9 +1,48 @@
-[gd_scene format=3 uid="uid://b1de70jmyvyb1"]
+[gd_scene load_steps=5 format=3 uid="uid://b1de70jmyvyb1"]
 
-[node name="PowerUpSelector" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[ext_resource type="Texture2D" uid="uid://cw8ffs0b7gc7e" path="res://assets/powerups_and_skills/power_up_popup_border.png" id="1_6neru"]
+[ext_resource type="Theme" uid="uid://dxr5ftbvwjtrg" path="res://assets/ui/title_theme.tres" id="2_jman8"]
+[ext_resource type="Script" path="res://scripts/powerups/power_up_selector.gd" id="3_ta3gg"]
+[ext_resource type="Theme" uid="uid://d04xevp1fvtso" path="res://assets/ui/button_theme.tres" id="3_x1i2c"]
+
+[node name="PowerUpSelector" type="TextureRect" node_paths=PackedStringArray("_skills_container")]
+process_mode = 3
+offset_right = 928.0
+offset_bottom = 327.0
+texture = ExtResource("1_6neru")
+script = ExtResource("3_ta3gg")
+_skills_container = NodePath("Content/Skills")
+
+[node name="Content" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 78.0
+offset_top = 44.0
+offset_right = 849.0
+offset_bottom = 283.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Title" type="Label" parent="Content"]
+layout_mode = 2
+theme = ExtResource("2_jman8")
+theme_override_font_sizes/font_size = 40
+text = "CHOOSE YOUR POWER UP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="Content"]
+layout_mode = 2
+theme = ExtResource("3_x1i2c")
+theme_override_font_sizes/font_size = 20
+text = "Select a power up to add or upgrade!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Skills" type="HBoxContainer" parent="Content"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 80
+alignment = 1

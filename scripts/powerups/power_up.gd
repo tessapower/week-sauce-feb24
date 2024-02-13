@@ -3,7 +3,7 @@ class_name PowerUp extends Resource
 const FINAL_LEVEL := 6
 
 @export var name: StringName
-@export var icon: Texture
+@export var icon: Texture2D
 
 func _init() -> void:
 	call_deferred("_validate")
