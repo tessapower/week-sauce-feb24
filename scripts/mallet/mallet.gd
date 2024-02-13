@@ -27,7 +27,7 @@ func _on_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "attack":
 		if _attack_buffered:
 			_dispatch_attack()
-			_attack_buffered = false
+			_unset_attack_buffered()
 		else:
 			_is_attacking = false
 
@@ -46,7 +46,7 @@ func _process_attack_buffer(delta: float) -> void:
 	if _attack_buffered:
 		_attack_buffer_time_left -= delta
 		if _attack_buffer_time_left <= 0:
-			_attack_buffered = false
+			_unset_attack_buffered()
 
 func attack() -> void:
 	if _is_attacking:
@@ -63,6 +63,18 @@ func _dispatch_attack() -> void:
 	var playback_speed := anim_length * attack_speed()
 	anim_player.play("attack", -1, playback_speed)
 
+
+func set_perma_attack(state: bool = true) -> void:
+	_perma_attack = state
+	if _perma_attack:
+		attack() # start attack
+		attack() # queue another attack into buffer
+
+
+func _unset_attack_buffered() -> void:
+	_attack_buffered = _perma_attack
+
 var _attack_buffered: bool = false
 var _attack_buffer_time_left: float
 var _is_attacking: bool = false
+var _perma_attack: bool = false

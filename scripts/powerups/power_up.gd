@@ -12,15 +12,17 @@ func _validate() -> void:
 	assert(name)
 	assert(icon)
 
-func apply(_power_up_system: PowerUpSystem) -> void:
-	var data_dict := _power_up_system.power_up_data()
-	var data: Data = data_dict.get(name)
-	if !data:
-		data = create_data()
-		data_dict[name] = data
+func apply(power_up_system: PowerUpSystem) -> void:
+	var data_dict := power_up_system.power_up_data()
+	var current_data: Data = data_dict.get(name)
+	if !current_data:
+		current_data = create_data()
+		data_dict[name] = current_data
 
-	data.level_up(_power_up_system.player())
+	current_data.level_up(power_up_system.player())
 
+func data() -> Data:
+	return game_state_manager.player().power_up_system().power_up_data().get(name)
 
 # Need to be implemented by subclass
 func create_data() -> Data:
