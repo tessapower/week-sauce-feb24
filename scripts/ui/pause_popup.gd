@@ -26,6 +26,9 @@ func _on_start_menu_pressed():
 	game_state_manager.set("is_paused", false)
 	game_state_manager.pause_system().set_paused(false)
 	SoundManager.play_sound(TRANSITION_BUTTON_SOUND)
+	call_deferred("_go_to_start_menu")
+
+func _go_to_start_menu():
 	get_tree().change_scene_to_file("res://scenes/menus/start_menu.tscn")
 
 
