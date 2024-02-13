@@ -6,6 +6,9 @@ func reset() -> void:
 	_stat_system.reset()
 	_power_up_system.reset()
 
+	set_perma_attack(false)
+	set_attack_effect(null)
+
 
 func exp_system() -> ExperienceSystem: return _exp_system
 func hp_system() -> HealthSystem: return _hp_system
