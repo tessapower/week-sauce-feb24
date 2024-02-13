@@ -5,8 +5,11 @@ const DB := preload("res://resources/powerups/power_up_db.tres")
 
 func _init(player: Player) -> void:
 	_player = player
+	call_deferred("init_deferred")
 
+func init_deferred() -> void:
 	_player.exp_system().leveled_up.connect(_on_player_leveled_up)
+
 
 func reset() -> void:
 	_power_up_data = {}

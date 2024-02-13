@@ -5,7 +5,7 @@ const BASE_ATK_DMG := 100
 const ATK_DMG_MUL_FACTOR := 1.05
 const ATK_DMG_ADD_FACTOR := 10
 
-const BASE_ATK_SPD := 1.25
+const BASE_ATK_SPD := 1.75
 
 signal atk_dmg_changed(new_value: int)
 signal atk_spd_changed(new_value: float)

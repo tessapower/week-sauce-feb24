@@ -15,5 +15,5 @@ func sound_system() -> SoundSystem: return _sound_system
 var _exp_system := ExperienceSystem.new()
 var _hp_system := HealthSystem.new(_exp_system)
 var _stat_system := StatSystem.new(_exp_system)
-var _power_up_system := PowerUpSystem.new()
+var _power_up_system := PowerUpSystem.new(self)
 var _sound_system := SoundSystem.new(_exp_system, _hp_system)
