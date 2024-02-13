@@ -12,7 +12,7 @@ func _ready():
 
 
 func _on_resume_pressed():
-	game_state_manager.set("is_paused", false)
+	game_state_manager.pause_system().set_paused(false)
 	hide()
 
 
@@ -24,6 +24,7 @@ func _on_settings_pressed():
 func _on_start_menu_pressed():
 	hide()
 	game_state_manager.set("is_paused", false)
+	game_state_manager.pause_system().set_paused(false)
 	SoundManager.play_sound(TRANSITION_BUTTON_SOUND)
 	get_tree().change_scene_to_file("res://scenes/menus/start_menu.tscn")
 

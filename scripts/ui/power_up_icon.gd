@@ -8,15 +8,25 @@ extends Control
 var power_up_name: StringName = ""
 var power_up_level: int = 1
 
+@onready var _skill: TextureRect = $Content/Border/CenterContainer/PanelContainer/Skill
+@onready var _label: Label = $Content/Label
+
+
 func set_power_up_icon(new_icon: Texture) -> void:
-	$Content/Border/Skill.set("Texture", new_icon)
+	_skill.set_texture(new_icon)
 
 
 func set_power_up_name(new_name: StringName) -> void:
 	power_up_name = new_name
-	$Content/Label.text = power_up_name + ": LVL %01d" % power_up_level
+	_update_text()
 
 
 func set_power_up_level(new_level: int) -> void:
 	power_up_level = new_level
-	$Content/Label.text = power_up_name + ": LVL %01d" % power_up_level
+	_update_text()
+
+func _update_text() -> void:
+	if power_up_level == PowerUp.FINAL_LEVEL:
+		_label.text = power_up_name + ": LVL MAX"
+	else:
+		_label.text = power_up_name + ": LVL %01d" % power_up_level

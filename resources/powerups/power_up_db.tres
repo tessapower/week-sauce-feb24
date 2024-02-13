@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="PowerUpDB" load_steps=4 format=3 uid="uid://ckcp6a2boaot7"]
 
 [ext_resource type="Script" path="res://scripts/powerups/power_up_db.gd" id="1_3a5ga"]
-[ext_resource type="Resource" uid="uid://bpoheb6vpygq3" path="res://resources/powerups/swiftness_power_up.tres" id="1_7pyqp"]
-[ext_resource type="Resource" uid="uid://bimlmv4ef3h7h" path="res://resources/powerups/colossal_strength_power_up.tres" id="2_w0884"]
+[ext_resource type="Resource" uid="uid://bpoheb6vpygq3" path="res://resources/powerups/swiftness_power_up.tres" id="1_kjmhq"]
+[ext_resource type="Resource" uid="uid://bjd58p0l6qddh" path="res://resources/powerups/colossal_strength_power_up.tres" id="2_x7cuj"]
 
 [resource]
 script = ExtResource("1_3a5ga")
-power_ups = Array[Resource("res://scripts/powerups/power_up.gd")]([ExtResource("1_7pyqp"), ExtResource("2_w0884")])
+power_ups = Array[Resource("res://scripts/powerups/power_up.gd")]([ExtResource("1_kjmhq"), ExtResource("2_x7cuj")])

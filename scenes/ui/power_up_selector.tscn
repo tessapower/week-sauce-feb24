@@ -1,35 +1,24 @@
-[gd_scene load_steps=10 format=3 uid="uid://b1de70jmyvyb1"]
+[gd_scene load_steps=5 format=3 uid="uid://b1de70jmyvyb1"]
 
-[ext_resource type="Texture2D" uid="uid://ba7i0g71o76gm" path="res://assets/powerups_and_skills/power_up_ui_border.png" id="1_1c5v1"]
 [ext_resource type="Texture2D" uid="uid://cw8ffs0b7gc7e" path="res://assets/powerups_and_skills/power_up_popup_border.png" id="1_6neru"]
 [ext_resource type="Theme" uid="uid://dxr5ftbvwjtrg" path="res://assets/ui/title_theme.tres" id="2_jman8"]
 [ext_resource type="Script" path="res://scripts/powerups/power_up_selector.gd" id="3_ta3gg"]
 [ext_resource type="Theme" uid="uid://d04xevp1fvtso" path="res://assets/ui/button_theme.tres" id="3_x1i2c"]
-[ext_resource type="Texture2D" uid="uid://dioc23pjoectf" path="res://assets/powerups_and_skills/swiftness.png" id="4_4qsog"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5a2cy"]
-texture = ExtResource("1_6neru")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t0u4y"]
-texture = ExtResource("1_1c5v1")
-
-[sub_resource type="Theme" id="Theme_gynel"]
-PopupPanel/styles/panel = SubResource("StyleBoxTexture_5a2cy")
-Window/styles/embedded_border = SubResource("StyleBoxTexture_t0u4y")
-
-[node name="PowerUpSelector" type="PopupPanel"]
+[node name="PowerUpSelector" type="TextureRect" node_paths=PackedStringArray("_skills_container")]
 process_mode = 3
-initial_position = 2
-size = Vector2i(928, 327)
-visible = true
-wrap_controls = false
-exclusive = true
-theme = SubResource("Theme_gynel")
-script = ExtResource("3_ta3gg")
-
-[node name="Content" type="VBoxContainer" parent="."]
 offset_right = 928.0
 offset_bottom = 327.0
+texture = ExtResource("1_6neru")
+script = ExtResource("3_ta3gg")
+_skills_container = NodePath("Content/Skills")
+
+[node name="Content" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 78.0
+offset_top = 44.0
+offset_right = 849.0
+offset_bottom = 283.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 20
@@ -57,14 +46,3 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 80
 alignment = 1
-
-[node name="RandomSkill1" type="TextureButton" parent="Content/Skills"]
-layout_mode = 2
-texture_normal = ExtResource("4_4qsog")
-
-[node name="RandomSkill2" type="TextureButton" parent="Content/Skills"]
-layout_mode = 2
-texture_normal = ExtResource("4_4qsog")
-
-[connection signal="pressed" from="Content/Skills/RandomSkill1" to="." method="_on_random_skill_1_pressed"]
-[connection signal="pressed" from="Content/Skills/RandomSkill2" to="." method="_on_random_skill_2_pressed"]

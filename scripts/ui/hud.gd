@@ -85,10 +85,10 @@ func add_or_update_powerup(power_up: PowerUp) -> void:
 		power_ups[power_up.name].set_power_up_level(power_up.data().level())
 	else:
 		var new_power_up = POWER_UP.instantiate()
+		power_ups_section.add_child(new_power_up)
 		new_power_up.set_power_up_name(power_up.name)
 		new_power_up.set_power_up_icon(power_up.icon)
 		new_power_up.set_power_up_level(power_up.data().level())
 
 		# Add the powerup to our dictionary of powerups
 		power_ups[power_up.name] = new_power_up
-		power_ups_section.add_child(new_power_up)
