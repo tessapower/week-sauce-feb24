@@ -12,13 +12,21 @@ class_name Hud extends Control
 
 
 func _ready() -> void:
-	game_state_manager.player.level_changed.connect(_on_player_level_changed)
-	game_state_manager.player.hp_changed.connect(_on_player_hp_changed)
-	game_state_manager.player.max_hp_changed.connect(_on_player_max_hp_changed)
-	game_state_manager.player.exp_changed.connect(_on_player_exp_changed)
-	game_state_manager.player.max_exp_changed.connect(_on_player_max_exp_changed)
+	assert(level_label != null)
+	assert(health_bar != null)
+	assert(exp_bar != null)
+	assert(score_label != null)
 
-	game_state_manager.score_changed.connect(_on_score_changed)
+	var player := game_state_manager.player()
+	var hp_system := player.hp_system()
+	var exp_system := player.exp_system()
+
+	hp_system.hp_changed.connect(_on_player_hp_changed)
+	hp_system.max_hp_changed.connect(_on_player_max_hp_changed)
+	exp_system.exp_changed.connect(_on_player_exp_changed)
+	exp_system.max_exp_changed.connect(_on_player_max_exp_changed)
+	exp_system.level_changed.connect(_on_player_level_changed)
+	game_state_manager.score_system().current_score_changed.connect(_on_score_changed)
 
 
 func _on_player_level_changed(new_value: int) -> void:

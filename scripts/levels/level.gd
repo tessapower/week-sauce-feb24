@@ -25,7 +25,7 @@ func _ready() -> void:
 	$MoleSpawner/Timer.start()
 
 	game_state_manager.initialize_for_scene()
-	game_state_manager.player.hp_reached_zero.connect(_on_game_over)
+	game_state_manager.player().hp_system().hp_reached_zero.connect(_on_game_over)
 	SoundManager.play_music_at_volume(MUSIC, MUSIC_VOLUME)
 
 

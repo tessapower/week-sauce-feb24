@@ -5,7 +5,10 @@ const BASE_ATK_DMG := 100
 const ATK_DMG_MUL_FACTOR := 1.05
 const ATK_DMG_ADD_FACTOR := 10
 
-const BASE_ATK_SPD := 1.25
+const BASE_ATK_SPD := 1.75
+
+signal atk_dmg_changed(new_value: int)
+signal atk_spd_changed(new_value: float)
 
 
 func _init(exp_system: ExperienceSystem) -> void:
@@ -22,6 +25,9 @@ func reset() -> void:
 	_update_atk_dmg()
 	_update_atk_spd()
 
+	atk_dmg_changed.emit(_atk_dmg)
+	atk_spd_changed.emit(_atk_spd)
+
 
 func atk_dmg() -> int: return _atk_dmg
 func atk_spd() -> float: return _atk_spd
@@ -31,19 +37,23 @@ func add_atk_dmg_mod(mod_name: String, mod: float) -> void:
 	assert(mod >= 0)
 	_atk_dmg_mod[mod_name] = mod
 	_update_atk_dmg()
+	atk_dmg_changed.emit(_atk_dmg)
 
 func add_atk_spd_mod(mod_name: String, mod: float) -> void:
 	assert(mod >= 0)
 	_atk_spd_mod[mod_name] = mod
 	_update_atk_spd()
+	atk_spd_changed.emit(_atk_spd)
 
 func rm_atk_dmg_mod(mod_name: String) -> void:
 	_atk_dmg_mod.erase(mod_name)
 	_update_atk_dmg()
+	atk_dmg_changed.emit(_atk_dmg)
 
 func rm_atk_spd_mod(mod_name: String) -> void:
 	_atk_spd_mod.erase(mod_name)
 	_update_atk_spd()
+	atk_spd_changed.emit(_atk_spd)
 
 func _update_atk_dmg() -> void:
 	var total_mod := 1.0
@@ -62,6 +72,7 @@ func _update_atk_spd() -> void:
 func _level_up_stats() -> void:
 	_premod_atk_dmg = int(_premod_atk_dmg * ATK_DMG_MUL_FACTOR + ATK_DMG_ADD_FACTOR)
 	_update_atk_dmg()
+	atk_dmg_changed.emit(_atk_dmg)
 
 var _premod_atk_dmg: int
 var _premod_atk_spd: float

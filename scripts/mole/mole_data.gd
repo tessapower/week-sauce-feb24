@@ -68,7 +68,7 @@ var attack_damage: int:
 
 
 func _calculate_stat(base: int, gain_over_time: int, expn_factor: float) -> int:
-	var five_minute_intervals := float(game_state_manager.time_elapsed) / 1e6 / 60 / 5
+	var five_minute_intervals := float(game_state_manager.time_system().time_elapsed()) / 1e6 / 60 / 5
 	var gain := gain_over_time * five_minute_intervals
 	var extra_expn := (expn_factor - 1) * five_minute_intervals
 
