@@ -14,7 +14,7 @@ config/name="Holy Whac-a-Moly"
 run/main_scene="res://scenes/menus/start_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/show_image=false
-config/icon="res://assets/mole/mole/mole_single.png"
+config/icon="res://itch_io/icon.png"
 
 [autoload]
 
