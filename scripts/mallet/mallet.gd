@@ -12,10 +12,8 @@ const ATTACK_BUFFER_TIMEOUT := 0.5
 
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var hit_area: Area2D = $HitArea
-
-@export var attack_speed: float = 2.0
-
 @onready var anim_length: float = anim_player.get_animation("attack").length
+@onready var stat_system: StatSystem = game_state_manager.player().stat_system()
 
 func _ready() -> void:
 	anim_player.animation_finished.connect(_on_animation_finished)
@@ -44,10 +42,6 @@ func _on_hit() -> void:
 				SoundManager.play_sound_with_pitch(HIT_SOUND, randf_range(0.75, 1.25))
 
 
-var _attack_buffered: bool = false
-var _attack_buffer_time_left: float
-var _is_attacking: bool = false
-
 func _process_attack_buffer(delta: float) -> void:
 	if _attack_buffered:
 		_attack_buffer_time_left -= delta
@@ -62,6 +56,13 @@ func attack() -> void:
 		_dispatch_attack()
 		_is_attacking = true
 
+func attack_damage() -> int: return stat_system.atk_dmg()
+func attack_speed() -> float: return stat_system.atk_spd()
+
 func _dispatch_attack() -> void:
-	var playback_speed := anim_length * attack_speed
+	var playback_speed := anim_length * attack_speed()
 	anim_player.play("attack", -1, playback_speed)
+
+var _attack_buffered: bool = false
+var _attack_buffer_time_left: float
+var _is_attacking: bool = false
