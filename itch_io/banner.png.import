@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6jcixel2laub"
-path="res://.godot/imported/mole_single.png-be7201f851ecb2ae7cdf5d0851c40bc2.ctex"
+uid="uid://c7k8ra1lkprro"
+path="res://.godot/imported/banner.png-b82a18a0a6752f84425536142016365f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/mole/mole/mole_single.png"
-dest_files=["res://.godot/imported/mole_single.png-be7201f851ecb2ae7cdf5d0851c40bc2.ctex"]
+source_file="res://itch_io/banner.png"
+dest_files=["res://.godot/imported/banner.png-b82a18a0a6752f84425536142016365f.ctex"]
 
 [params]
 
