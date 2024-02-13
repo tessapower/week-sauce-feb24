@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://xnguu4b3ldoq"]
+
+[ext_resource type="Theme" uid="uid://d04xevp1fvtso" path="res://assets/ui/button_theme.tres" id="1_8yjm1"]
+[ext_resource type="FontFile" uid="uid://cpnd8k1fnd1ni" path="res://assets/fonts/dogica_font/OTF/dogicapixel.otf" id="1_b55gn"]
+[ext_resource type="Theme" uid="uid://dxr5ftbvwjtrg" path="res://assets/ui/title_theme.tres" id="1_qbng4"]
+[ext_resource type="Script" path="res://scripts/menus/start-menu/submenu_popup.gd" id="1_s8rqn"]
+[ext_resource type="Texture2D" uid="uid://d3oif6kphox47" path="res://assets/background/grassy_field/grass_background.png" id="2_lha2t"]
+
+[node name="SubmenuPopup" type="Window"]
+size = Vector2i(1920, 1080)
+exclusive = true
+unresizable = true
+borderless = true
+transparent = true
+popup_window = true
+script = ExtResource("1_s8rqn")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_lha2t")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.454902)
+
+[node name="Content" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(900, 500)
+offset_right = 1920.0
+offset_bottom = 1080.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 80
+alignment = 1
+
+[node name="Title" type="Label" parent="Content"]
+layout_mode = 2
+theme = ExtResource("1_qbng4")
+theme_override_font_sizes/font_size = 48
+text = "TITLE"
+horizontal_alignment = 1
+
+[node name="Text" type="RichTextLabel" parent="Content"]
+custom_minimum_size = Vector2(750, 400)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/line_separation = 12
+theme_override_fonts/normal_font = ExtResource("1_b55gn")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "Nullam lacinia, arcu vel blandit ullamcorper, quam metus vestibulum ipsum, sed fringilla eros dolor semper mi. In commodo dui et neque convallis, quis porta est ornare. Aenean sit amet eleifend mauris. Nunc in orci lacinia, sagittis metus at, faucibus felis. Pellentesque fringilla mauris ac libero iaculis suscipit. Etiam sagittis sollicitudin porttitor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nunc auctor ex non justo interdum, vitae eleifend nulla consectetur. Pellentesque fringilla non sem a gravida.
+
+Integer imperdiet tortor tincidunt ultricies sodales. Maecenas non laoreet dolor, in viverra massa. Pellentesque vehicula molestie ligula id pharetra. Integer viverra libero quis mi dictum egestas. In eu luctus mauris. Nullam tincidunt sagittis libero. Nulla pretium, ligula ut lacinia tempus, magna ante rhoncus velit, quis suscipit nisi odio ut ligula. Nunc iaculis et libero sed hendrerit. Etiam et tempus tortor. Vestibulum eget mauris ultricies, condimentum urna et, dictum nibh.
+"
+
+[node name="CloseButton" type="Button" parent="Content"]
+layout_mode = 2
+theme = ExtResource("1_8yjm1")
+text = "CLOSE"
+
+[connection signal="pressed" from="Content/CloseButton" to="." method="_on_close_pressed"]

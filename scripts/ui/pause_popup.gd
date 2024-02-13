@@ -4,6 +4,8 @@ extends Window
 ##
 ## Author(s): Tessa Power
 
+const TRANSITION_BUTTON_SOUND: AudioStream = preload("res://assets/sounds/interface.mp3")
+
 func _ready():
 	get_viewport().transparent_bg = true
 	hide()
@@ -20,8 +22,10 @@ func _on_settings_pressed():
 
 
 func _on_start_menu_pressed():
-	# TODO: wire this up when the start menu is implemented
-	pass
+	hide()
+	game_state_manager.set("is_paused", false)
+	SoundManager.play_sound(TRANSITION_BUTTON_SOUND)
+	get_tree().change_scene_to_file("res://scenes/menus/start_menu.tscn")
 
 
 func _on_exit_pressed():

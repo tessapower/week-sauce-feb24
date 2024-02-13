@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://6u7ahu1oqetx"]
+[gd_scene load_steps=6 format=3 uid="uid://6u7ahu1oqetx"]
 
 [ext_resource type="Script" path="res://scripts/menus/start-menu/start_menu.gd" id="1_awl2l"]
 [ext_resource type="Texture2D" uid="uid://d3oif6kphox47" path="res://assets/background/grassy_field/grass_background.png" id="2_w2fv6"]
 [ext_resource type="Theme" uid="uid://dxr5ftbvwjtrg" path="res://assets/ui/title_theme.tres" id="3_bgey1"]
 [ext_resource type="Theme" uid="uid://d04xevp1fvtso" path="res://assets/ui/button_theme.tres" id="3_thpks"]
+[ext_resource type="PackedScene" uid="uid://xnguu4b3ldoq" path="res://scenes/menus/submenu_popup.tscn" id="4_peepg"]
 
 [node name="StartMenu" type="Node2D"]
 script = ExtResource("1_awl2l")
@@ -50,19 +51,11 @@ popup/item_2/id = 2
 [node name="HowToPlay" type="Button" parent="Content/Buttons"]
 layout_mode = 2
 theme = ExtResource("3_thpks")
-disabled = true
 text = "HOW TO PLAY"
-
-[node name="Settings" type="Button" parent="Content/Buttons"]
-layout_mode = 2
-theme = ExtResource("3_thpks")
-disabled = true
-text = "SETTINGS"
 
 [node name="Credits" type="Button" parent="Content/Buttons"]
 layout_mode = 2
 theme = ExtResource("3_thpks")
-disabled = true
 text = "CREDITS"
 
 [node name="Exit" type="Button" parent="Content/Buttons"]
@@ -70,14 +63,48 @@ layout_mode = 2
 theme = ExtResource("3_thpks")
 text = "EXIT"
 
-[node name="PopupArea" type="ReferenceRect" parent="."]
-z_index = 1
-z_as_relative = false
-offset_left = 255.0
-offset_top = 154.0
-offset_right = 1685.0
-offset_bottom = 903.0
-mouse_filter = 2
+[node name="HowToPlayPopup" parent="." instance=ExtResource("4_peepg")]
+visible = false
+title_string = "How to Play"
+text_content_string = "Use your mouse to move your mallet around the screen and left click to whack the moles.
+
+Be quick about it - moles can get aggressive!
+
+Press 'P' at any time to pause the game.
+
+How long can you last? Try to get the highest score!"
+
+[node name="CreditsPopup" parent="." instance=ExtResource("4_peepg")]
+visible = false
+title_string = "Credits"
+text_content_string = "DEVELOPMENT
+
+Phuwasate Lutchanont
+Tessa Power
+
+ARTWORK
+
+Phuwasate Lutchanont
+Tessa Power
+
+Artwork created with help from the following references:
+
+\"Revolver\" by Reroll App
+\"Underwater Plants and Seaweeds in Pixel Art\" by Aliaksei Kruhlenia
+\"Mole\" assets by Ain Mikail (@Mikailain)
+
+SOUND EFFECTS AND MUSIC
+
+\"Daisy\" by Sakura Girl (SoundCloud: @sakuragirl_official)
+\"Cute Level Up 3\", \"Swing Whoosh Weapon 4\" by floraphonic (floraphonic.com)
+\"DéplacementRoche\", \"Hurt_C_08\", \"negative_beeps\", \"Pick\" by Pixabay
+\"Interface\" by UNIVERSFIELD
+\"Coin Collect Retro 8-bit Sound Effect\" by Lesiakower
+
+FONTS
+
+\"Daydream\" by Rahul Parihar
+\"Dogica\" by Roberto Mocci"
 
 [node name="Background" type="TextureRect" parent="."]
 z_as_relative = false
@@ -89,6 +116,5 @@ texture = ExtResource("2_w2fv6")
 [connection signal="pressed" from="Content/Buttons/Play" to="." method="_on_play_pressed"]
 [connection signal="item_selected" from="Content/Buttons/OptionButton" to="." method="_on_level_selected"]
 [connection signal="pressed" from="Content/Buttons/HowToPlay" to="." method="_on_how_to_play_pressed"]
-[connection signal="pressed" from="Content/Buttons/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Content/Buttons/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="Content/Buttons/Exit" to="." method="_on_exit_pressed"]
