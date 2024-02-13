@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="MoleData" load_steps=2 format=3 uid="uid://0l7x7j06l7mg"]
+
+[ext_resource type="Script" path="res://scripts/mole/mole_data.gd" id="1_clon8"]
+
+[resource]
+script = ExtResource("1_clon8")
+name = "Golden Mole"
+base_exp_reward = 50
+exp_reward_over_time = 100
+exp_reward_expn_factor = 1.2
+base_score_reward = 100
+score_reward_over_time = 250
+score_reward_expn_factor = 1.2
+time_until_disappear = 3.0
+base_max_health = 100
+max_health_over_time = 300
+max_health_expn_factor = 1.1
+base_attack_damage = 0
+attack_damage_over_time = 0
+attack_damage_expn_factor = 0.0
+attack_speed = 0.0

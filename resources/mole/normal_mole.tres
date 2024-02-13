@@ -5,5 +5,17 @@
 [resource]
 script = ExtResource("1_v0u8t")
 name = ""
-initial_max_health = 100
-initial_exp_reward = 5
+base_exp_reward = 10
+exp_reward_over_time = 20
+exp_reward_expn_factor = 1.1
+base_score_reward = 20
+score_reward_over_time = 60
+score_reward_expn_factor = 1.1
+time_until_disappear = 5.0
+base_max_health = 100
+max_health_over_time = 300
+max_health_expn_factor = 1.1
+base_attack_damage = 5
+attack_damage_over_time = 15
+attack_damage_expn_factor = 1.1
+attack_speed = 0.25
