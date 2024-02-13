@@ -6,6 +6,7 @@ func reset() -> void:
 	_stat_system.reset()
 	_power_up_system.reset()
 
+
 func exp_system() -> ExperienceSystem: return _exp_system
 func hp_system() -> HealthSystem: return _hp_system
 func stat_system() -> StatSystem: return _stat_system
@@ -26,5 +27,9 @@ func set_perma_attack(state: bool = true) -> void:
 	perma_attack_changed.emit(_perma_attack)
 
 func perma_attack() -> bool: return _perma_attack
-
 var _perma_attack: bool = false
+
+
+func attack_effect() -> PackedScene: return _attack_effect
+func set_attack_effect(scene: PackedScene) -> void: _attack_effect = scene
+var _attack_effect: PackedScene

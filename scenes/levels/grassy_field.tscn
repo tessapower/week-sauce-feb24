@@ -27,8 +27,9 @@ z_index = 1
 spawn_area = NodePath("../SpawnArea")
 mole_scene = ExtResource("4_wiui8")
 
-[node name="Mallet" parent="." instance=ExtResource("4_xlph6")]
+[node name="Mallet" parent="." node_paths=PackedStringArray("level") instance=ExtResource("4_xlph6")]
 z_index = 2
+level = NodePath("..")
 
 [node name="PotionSpawner" parent="." node_paths=PackedStringArray("spawn_area") instance=ExtResource("6_uqhq2")]
 spawn_area = NodePath("../SpawnArea")

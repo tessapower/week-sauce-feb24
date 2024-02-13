@@ -10,6 +10,7 @@ class_name Mole extends CharacterBody2D
 @onready var disappear_timer: Timer = $DisappearTimer
 @onready var attack_timer: Timer = $AttackTimer
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var stat_system: StatSystem = game_state_manager.player().stat_system()
 
 const EMERGE_SOUND: AudioStream = preload("res://assets/sounds/deplacementroche.mp3")
 const ATTACK_SOUND: AudioStream = preload("res://assets/sounds/swing-whoosh-weapon.mp3")
@@ -19,7 +20,7 @@ signal defeated(position: Vector2, xp: int)
 ## Callback function intended to be called when hit by the player's mallet.
 func on_hit() -> void:
 	# TODO: refactor this to take a damage value when powerups are implemented
-	apply_damage(50)
+	apply_damage(stat_system.atk_dmg())
 	# Play the appropriate animation
 	if current_health == 0: animated_sprite.play("defeated")
 	else:

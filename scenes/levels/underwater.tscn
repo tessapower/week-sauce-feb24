@@ -26,8 +26,9 @@ offset_bottom = 851.0
 spawn_area = NodePath("../SpawnArea")
 mole_scene = ExtResource("4_3qfv7")
 
-[node name="Mallet" parent="." instance=ExtResource("5_x3ww5")]
+[node name="Mallet" parent="." node_paths=PackedStringArray("level") instance=ExtResource("5_x3ww5")]
 z_index = 2
+level = NodePath("..")
 
 [node name="PotionSpawner" parent="." node_paths=PackedStringArray("spawn_area") instance=ExtResource("6_vxyy4")]
 spawn_area = NodePath("../SpawnArea")
