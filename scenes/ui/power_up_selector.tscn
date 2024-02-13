@@ -1,9 +1,70 @@
-[gd_scene format=3 uid="uid://b1de70jmyvyb1"]
+[gd_scene load_steps=10 format=3 uid="uid://b1de70jmyvyb1"]
 
-[node name="PowerUpSelector" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[ext_resource type="Texture2D" uid="uid://ba7i0g71o76gm" path="res://assets/powerups_and_skills/power_up_ui_border.png" id="1_1c5v1"]
+[ext_resource type="Texture2D" uid="uid://cw8ffs0b7gc7e" path="res://assets/powerups_and_skills/power_up_popup_border.png" id="1_6neru"]
+[ext_resource type="Theme" uid="uid://dxr5ftbvwjtrg" path="res://assets/ui/title_theme.tres" id="2_jman8"]
+[ext_resource type="Script" path="res://scripts/powerups/power_up_selector.gd" id="3_ta3gg"]
+[ext_resource type="Theme" uid="uid://d04xevp1fvtso" path="res://assets/ui/button_theme.tres" id="3_x1i2c"]
+[ext_resource type="Texture2D" uid="uid://dioc23pjoectf" path="res://assets/powerups_and_skills/swiftness.png" id="4_4qsog"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5a2cy"]
+texture = ExtResource("1_6neru")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t0u4y"]
+texture = ExtResource("1_1c5v1")
+
+[sub_resource type="Theme" id="Theme_gynel"]
+PopupPanel/styles/panel = SubResource("StyleBoxTexture_5a2cy")
+Window/styles/embedded_border = SubResource("StyleBoxTexture_t0u4y")
+
+[node name="PowerUpSelector" type="PopupPanel"]
+process_mode = 3
+initial_position = 2
+size = Vector2i(928, 327)
+visible = true
+wrap_controls = false
+exclusive = true
+theme = SubResource("Theme_gynel")
+script = ExtResource("3_ta3gg")
+
+[node name="Content" type="VBoxContainer" parent="."]
+offset_right = 928.0
+offset_bottom = 327.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Title" type="Label" parent="Content"]
+layout_mode = 2
+theme = ExtResource("2_jman8")
+theme_override_font_sizes/font_size = 40
+text = "CHOOSE YOUR POWER UP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="Content"]
+layout_mode = 2
+theme = ExtResource("3_x1i2c")
+theme_override_font_sizes/font_size = 20
+text = "Select a power up to add or upgrade!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Skills" type="HBoxContainer" parent="Content"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 80
+alignment = 1
+
+[node name="RandomSkill1" type="TextureButton" parent="Content/Skills"]
+layout_mode = 2
+texture_normal = ExtResource("4_4qsog")
+
+[node name="RandomSkill2" type="TextureButton" parent="Content/Skills"]
+layout_mode = 2
+texture_normal = ExtResource("4_4qsog")
+
+[connection signal="pressed" from="Content/Skills/RandomSkill1" to="." method="_on_random_skill_1_pressed"]
+[connection signal="pressed" from="Content/Skills/RandomSkill2" to="." method="_on_random_skill_2_pressed"]
