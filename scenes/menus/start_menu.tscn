@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d3oif6kphox47" path="res://assets/background/grassy_field/grass_background.png" id="2_w2fv6"]
 [ext_resource type="Theme" uid="uid://dxr5ftbvwjtrg" path="res://assets/ui/title_theme.tres" id="3_bgey1"]
 [ext_resource type="Theme" uid="uid://d04xevp1fvtso" path="res://assets/ui/button_theme.tres" id="3_thpks"]
-[ext_resource type="PackedScene" path="res://scenes/menus/submenu_popup.tscn" id="4_peepg"]
+[ext_resource type="PackedScene" uid="uid://xnguu4b3ldoq" path="res://scenes/menus/submenu_popup.tscn" id="4_peepg"]
 
 [node name="StartMenu" type="Node2D"]
 script = ExtResource("1_awl2l")
