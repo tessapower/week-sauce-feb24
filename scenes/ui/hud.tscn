@@ -193,3 +193,11 @@ value = 0.0
 libraries = {
 "": SubResource("AnimationLibrary_ermld")
 }
+
+[node name="PowerUps" type="HBoxContainer" parent="Content/BottomUI"]
+custom_minimum_size = Vector2(700, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 250
+alignment = 2
