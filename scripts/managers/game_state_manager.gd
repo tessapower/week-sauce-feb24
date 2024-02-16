@@ -9,7 +9,6 @@ class_name GameStateManager extends Node
 
 # TODO: load persistent player data (such as highscore)
 
-
 func _process(delta: float) -> void:
 	_time_system.process(delta)
 
