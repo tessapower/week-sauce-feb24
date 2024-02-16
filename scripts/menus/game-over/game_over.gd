@@ -11,11 +11,11 @@ const TRANSITION_BUTTON_SOUND: AudioStream = preload("res://assets/sounds/interf
 
 func _ready() -> void:
 	# Update the final score label
-	var score: int = game_state_manager.current_score
-	if (score != 0 and score == game_state_manager.high_score):
+	var score: int = game_state_manager.score_system().current_score()
+	if (score != 0 and score == game_state_manager.score_system().high_score()):
 		# Let the player know if they set a new highscore
 		final_score.set_text("New High Score!!\n\nFinal Score: ")
-	final_score.text += str(game_state_manager.current_score)
+	final_score.text += str(score)
 
 
 func _on_play_pressed() -> void:
