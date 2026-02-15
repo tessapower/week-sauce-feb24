@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="MoleData" load_steps=2 format=3 uid="uid://0l7x7j06l7mg"]
 
-[ext_resource type="Script" path="res://scripts/mole/mole_data.gd" id="1_clon8"]
+[ext_resource type="Script" uid="uid://dybgy8ycqv877" path="res://scripts/mole/mole_data.gd" id="1_clon8"]
 
 [resource]
 script = ExtResource("1_clon8")

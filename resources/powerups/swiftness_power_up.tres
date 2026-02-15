@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="SwiftnessPowerUp" load_steps=3 format=3 uid="uid://bpoheb6vpygq3"]
 
 [ext_resource type="Texture2D" uid="uid://dioc23pjoectf" path="res://assets/powerups_and_skills/swiftness.png" id="1_01fqa"]
-[ext_resource type="Script" path="res://scripts/powerups/swiftness_power_up.gd" id="1_roatl"]
+[ext_resource type="Script" uid="uid://cqcxng4ta4u4s" path="res://scripts/powerups/swiftness_power_up.gd" id="1_roatl"]
 
 [resource]
 script = ExtResource("1_roatl")

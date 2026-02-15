@@ -1,15 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://6u7ahu1oqetx"]
+[gd_scene format=3 uid="uid://6u7ahu1oqetx"]
 
-[ext_resource type="Script" path="res://scripts/menus/start-menu/start_menu.gd" id="1_awl2l"]
+[ext_resource type="Script" uid="uid://4eefkpqqy3ma" path="res://scripts/menus/start-menu/start_menu.gd" id="1_awl2l"]
 [ext_resource type="Texture2D" uid="uid://d3oif6kphox47" path="res://assets/background/grassy_field/grass_background.png" id="2_w2fv6"]
 [ext_resource type="Theme" uid="uid://dxr5ftbvwjtrg" path="res://assets/ui/title_theme.tres" id="3_bgey1"]
 [ext_resource type="Theme" uid="uid://d04xevp1fvtso" path="res://assets/ui/button_theme.tres" id="3_thpks"]
 [ext_resource type="PackedScene" uid="uid://xnguu4b3ldoq" path="res://scenes/menus/submenu_popup.tscn" id="4_peepg"]
 
-[node name="StartMenu" type="Node2D"]
+[node name="StartMenu" type="Node2D" unique_id=1643313169]
 script = ExtResource("1_awl2l")
 
-[node name="Content" type="VBoxContainer" parent="."]
+[node name="Content" type="VBoxContainer" parent="." unique_id=1342484537]
 z_index = 2
 z_as_relative = false
 offset_right = 1920.0
@@ -17,30 +17,30 @@ offset_bottom = 1080.0
 theme_override_constants/separation = 100
 alignment = 1
 
-[node name="Title" type="Label" parent="Content"]
+[node name="Title" type="Label" parent="Content" unique_id=1227982228]
 layout_mode = 2
 theme = ExtResource("3_bgey1")
 text = "Holy Whac-A-Moley!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Buttons" type="VBoxContainer" parent="Content"]
+[node name="Buttons" type="VBoxContainer" parent="Content" unique_id=1731970440]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 62
 alignment = 1
 
-[node name="Play" type="Button" parent="Content/Buttons"]
+[node name="Play" type="Button" parent="Content/Buttons" unique_id=1575382473]
 layout_mode = 2
 theme = ExtResource("3_thpks")
 text = "PLAY"
 
-[node name="OptionButton" type="OptionButton" parent="Content/Buttons"]
+[node name="OptionButton" type="OptionButton" parent="Content/Buttons" unique_id=1415024395]
 layout_mode = 2
 theme = ExtResource("3_thpks")
-item_count = 3
 selected = 0
+item_count = 3
 popup/item_0/text = "GRASSY FIELD"
 popup/item_0/id = 0
 popup/item_1/text = "DESERT"
@@ -48,22 +48,23 @@ popup/item_1/id = 1
 popup/item_2/text = "UNDERWATER"
 popup/item_2/id = 2
 
-[node name="HowToPlay" type="Button" parent="Content/Buttons"]
+[node name="HowToPlay" type="Button" parent="Content/Buttons" unique_id=1452658941]
 layout_mode = 2
 theme = ExtResource("3_thpks")
 text = "HOW TO PLAY"
 
-[node name="Credits" type="Button" parent="Content/Buttons"]
+[node name="Credits" type="Button" parent="Content/Buttons" unique_id=818220731]
 layout_mode = 2
 theme = ExtResource("3_thpks")
 text = "CREDITS"
 
-[node name="Exit" type="Button" parent="Content/Buttons"]
+[node name="Exit" type="Button" parent="Content/Buttons" unique_id=478088878]
 layout_mode = 2
 theme = ExtResource("3_thpks")
 text = "EXIT"
 
-[node name="HowToPlayPopup" parent="." instance=ExtResource("4_peepg")]
+[node name="HowToPlayPopup" parent="." unique_id=1856051398 instance=ExtResource("4_peepg")]
+transparent_bg = true
 visible = false
 title_string = "How to Play"
 text_content_string = "Use your mouse to move your mallet around the screen and left click to whack the moles.
@@ -74,7 +75,8 @@ Press 'P' at any time to pause the game.
 
 How long can you last? Try to get the highest score!"
 
-[node name="CreditsPopup" parent="." instance=ExtResource("4_peepg")]
+[node name="CreditsPopup" parent="." unique_id=689597119 instance=ExtResource("4_peepg")]
+transparent_bg = true
 visible = false
 title_string = "Credits"
 text_content_string = "DEVELOPMENT
@@ -105,7 +107,7 @@ FONTS
 \"Daydream\" by Rahul Parihar
 \"Dogica\" by Roberto Mocci"
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=724041526]
 z_as_relative = false
 offset_right = 1920.0
 offset_bottom = 1080.0

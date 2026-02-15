@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cw8ffs0b7gc7e" path="res://assets/powerups_and_skills/power_up_popup_border.png" id="1_6neru"]
 [ext_resource type="Theme" uid="uid://dxr5ftbvwjtrg" path="res://assets/ui/title_theme.tres" id="2_jman8"]
-[ext_resource type="Script" path="res://scripts/powerups/power_up_selector.gd" id="3_ta3gg"]
+[ext_resource type="Script" uid="uid://bgo656n1i1bcw" path="res://scripts/powerups/power_up_selector.gd" id="3_ta3gg"]
 [ext_resource type="Theme" uid="uid://d04xevp1fvtso" path="res://assets/ui/button_theme.tres" id="3_x1i2c"]
 
 [node name="PowerUpSelector" type="TextureRect" node_paths=PackedStringArray("_skills_container")]

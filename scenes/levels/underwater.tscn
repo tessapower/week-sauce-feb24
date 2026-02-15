@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bq5pwxfdsepo4"]
 
-[ext_resource type="Script" path="res://scripts/levels/level.gd" id="1_se0hv"]
+[ext_resource type="Script" uid="uid://bwgheil5lewgk" path="res://scripts/levels/level.gd" id="1_se0hv"]
 [ext_resource type="Texture2D" uid="uid://psxa32s2f35x" path="res://assets/background/underwater/underwater_background.png" id="2_fo3yx"]
 [ext_resource type="PackedScene" uid="uid://837y17to6u7f" path="res://scenes/managers/mole_spawner.tscn" id="3_15ju8"]
 [ext_resource type="PackedScene" uid="uid://cqvoaet1c7rnn" path="res://scenes/mole/scuba_mole.tscn" id="4_3qfv7"]

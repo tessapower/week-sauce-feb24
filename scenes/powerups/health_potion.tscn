@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://c381k7jkf3fwh"]
 
 [ext_resource type="Texture2D" uid="uid://cjyet8l8kf08b" path="res://assets/powerups_and_skills/health_potion.png" id="1_ld4wl"]
-[ext_resource type="Script" path="res://scripts/powerups/health_potion.gd" id="1_phf5j"]
+[ext_resource type="Script" uid="uid://c26rc8701ylh5" path="res://scripts/powerups/health_potion.gd" id="1_phf5j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0sxcr"]
 atlas = ExtResource("1_ld4wl")

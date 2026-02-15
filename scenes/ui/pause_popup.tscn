@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://csyxhppia4iay"]
 
-[ext_resource type="Script" path="res://scripts/ui/pause_popup.gd" id="1_25o7d"]
+[ext_resource type="Script" uid="uid://cs3b2508u3hfw" path="res://scripts/ui/pause_popup.gd" id="1_25o7d"]
 [ext_resource type="Theme" uid="uid://d04xevp1fvtso" path="res://assets/ui/button_theme.tres" id="1_h5nxq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qby5g"]

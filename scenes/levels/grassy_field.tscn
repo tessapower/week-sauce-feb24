@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://ou60btpj1h75"]
 
 [ext_resource type="Texture2D" uid="uid://d3oif6kphox47" path="res://assets/background/grassy_field/grass_background.png" id="1_1dfqm"]
-[ext_resource type="Script" path="res://scripts/levels/level.gd" id="1_xxq0y"]
+[ext_resource type="Script" uid="uid://bwgheil5lewgk" path="res://scripts/levels/level.gd" id="1_xxq0y"]
 [ext_resource type="PackedScene" uid="uid://837y17to6u7f" path="res://scenes/managers/mole_spawner.tscn" id="2_4rsdj"]
 [ext_resource type="PackedScene" uid="uid://csm400llmry8n" path="res://scenes/mole/mole.tscn" id="4_wiui8"]
 [ext_resource type="PackedScene" uid="uid://yk5pdf5stg3b" path="res://scenes/mallet/mallet.tscn" id="4_xlph6"]

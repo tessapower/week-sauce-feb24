@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://bxuobad2uawle"]
 
-[ext_resource type="Script" path="res://scripts/powerups/health_potion.gd" id="1_xfh0s"]
+[ext_resource type="Script" uid="uid://c26rc8701ylh5" path="res://scripts/powerups/health_potion.gd" id="1_xfh0s"]
 [ext_resource type="Texture2D" uid="uid://bqxlqhnkk4rlf" path="res://assets/powerups_and_skills/desert_health_potion.png" id="2_admic"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pku3r"]

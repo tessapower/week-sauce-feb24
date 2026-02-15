@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d3gri6uv0bjof"]
 
 [ext_resource type="FontFile" uid="uid://yfe1lhtsrxpb" path="res://assets/fonts/daydream_font/Daydream.ttf" id="1_b2a3o"]
-[ext_resource type="Script" path="res://scripts/ui/bubble_label.gd" id="2_ovyef"]
+[ext_resource type="Script" uid="uid://dyb5jnq1qsw2l" path="res://scripts/ui/bubble_label.gd" id="2_ovyef"]
 
 [node name="BubbleLabel" type="Label"]
 anchors_preset = -1

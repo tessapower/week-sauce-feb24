@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://7r78266drvuy"]
 
-[ext_resource type="Script" path="res://scripts/powerups/health_potion.gd" id="1_q6k8o"]
+[ext_resource type="Script" uid="uid://c26rc8701ylh5" path="res://scripts/powerups/health_potion.gd" id="1_q6k8o"]
 [ext_resource type="Texture2D" uid="uid://d36hy3nc0n86x" path="res://assets/powerups_and_skills/underwater_health_potion.png" id="2_5soco"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7hfcl"]

@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://d04xevp1fvtso" path="res://assets/ui/button_theme.tres" id="1_8yjm1"]
 [ext_resource type="FontFile" uid="uid://cpnd8k1fnd1ni" path="res://assets/fonts/dogica_font/OTF/dogicapixel.otf" id="1_b55gn"]
 [ext_resource type="Theme" uid="uid://dxr5ftbvwjtrg" path="res://assets/ui/title_theme.tres" id="1_qbng4"]
-[ext_resource type="Script" path="res://scripts/menus/start-menu/submenu_popup.gd" id="1_s8rqn"]
+[ext_resource type="Script" uid="uid://ii8srvq57ocd" path="res://scripts/menus/start-menu/submenu_popup.gd" id="1_s8rqn"]
 [ext_resource type="Texture2D" uid="uid://d3oif6kphox47" path="res://assets/background/grassy_field/grass_background.png" id="2_lha2t"]
 
 [node name="SubmenuPopup" type="Window"]

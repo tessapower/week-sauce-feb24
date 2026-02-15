@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ColossalStrengthPowerUp" load_steps=3 format=3 uid="uid://bjd58p0l6qddh"]
 
 [ext_resource type="Texture2D" uid="uid://tr81ppivyujk" path="res://assets/powerups_and_skills/colossal_strength.png" id="1_4i8fl"]
-[ext_resource type="Script" path="res://scripts/powerups/colossal_strength_power_up.gd" id="1_qg173"]
+[ext_resource type="Script" uid="uid://b7833jhry2ad" path="res://scripts/powerups/colossal_strength_power_up.gd" id="1_qg173"]
 
 [resource]
 script = ExtResource("1_qg173")

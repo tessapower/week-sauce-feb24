@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://837y17to6u7f"]
 
-[ext_resource type="Script" path="res://scripts/managers/mole_spawner.gd" id="1_o746x"]
+[ext_resource type="Script" uid="uid://bftq6u0h7pv5f" path="res://scripts/managers/mole_spawner.gd" id="1_o746x"]
 
 [node name="MoleSpawner" type="Node2D"]
 script = ExtResource("1_o746x")

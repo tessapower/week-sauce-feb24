@@ -1,6 +1,6 @@
 [gd_scene load_steps=71 format=3 uid="uid://cpr1mnkiljavp"]
 
-[ext_resource type="Script" path="res://scripts/mole/mole.gd" id="1_a147d"]
+[ext_resource type="Script" uid="uid://b6w1iafmmdm2" path="res://scripts/mole/mole.gd" id="1_a147d"]
 [ext_resource type="Resource" uid="uid://cex6j6q85ny8r" path="res://resources/mole/normal_mole.tres" id="2_ewup7"]
 [ext_resource type="Texture2D" uid="uid://cbvb84bvv2hor" path="res://assets/mole/desert_mole/desert_mole_attack.png" id="3_sos04"]
 [ext_resource type="Texture2D" uid="uid://cx7julgivtc0q" path="res://assets/mole/desert_mole/desert_mole_defeated.png" id="4_ns2pi"]

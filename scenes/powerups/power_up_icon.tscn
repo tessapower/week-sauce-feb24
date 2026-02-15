@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://blkwnek31fth2"]
 
-[ext_resource type="Script" path="res://scripts/ui/power_up_icon.gd" id="1_vrnbv"]
+[ext_resource type="Script" uid="uid://dyn1gbvfsmmpv" path="res://scripts/ui/power_up_icon.gd" id="1_vrnbv"]
 [ext_resource type="Texture2D" uid="uid://ba7i0g71o76gm" path="res://assets/powerups_and_skills/power_up_ui_border.png" id="2_gkoav"]
 [ext_resource type="Theme" uid="uid://d04xevp1fvtso" path="res://assets/ui/button_theme.tres" id="3_oijgs"]
 [ext_resource type="Texture2D" uid="uid://tr81ppivyujk" path="res://assets/powerups_and_skills/colossal_strength.png" id="3_uoopv"]

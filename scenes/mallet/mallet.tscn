@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://yk5pdf5stg3b"]
 
-[ext_resource type="Script" path="res://scripts/mallet/mallet.gd" id="1_hma0e"]
+[ext_resource type="Script" uid="uid://7k0dr2aelxnl" path="res://scripts/mallet/mallet.gd" id="1_hma0e"]
 [ext_resource type="Texture2D" uid="uid://bogniwo3maagl" path="res://assets/mallet/basic_mallet.png" id="2_0pyra"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0jyjo"]
@@ -41,8 +41,8 @@ resource_name = "idle"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mq7oj"]
 _data = {
-"attack": SubResource("Animation_gg1oe"),
-"idle": SubResource("Animation_r1iwr")
+&"attack": SubResource("Animation_gg1oe"),
+&"idle": SubResource("Animation_r1iwr")
 }
 
 [node name="BasicMallet" type="Node2D"]
